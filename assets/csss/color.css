@@ -1,0 +1,95 @@
+/* Nhúng font từ Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600;700&family=Montserrat:wght@300;400&display=swap");
+
+/* Reset CSS cơ bản */
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* * Container chính, tương đương với <div className="hero-section">
+ * Sử dụng flex để sắp xếp các panel con theo chiều ngang.
+ */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    overflow: hidden; /* Ngăn cuộn trang ngang khi panel mở rộng */
+}
+
+/* * Mỗi panel con, tương đương với <div className="hero-section__image-container">
+ * Đây là TRẠNG THÁI MẶC ĐỊNH (khi không active)
+ */
+.hero-section__image-container {
+    /* flex: 1; -> Trạng thái mặc định (tương đương activeIndex === null) */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative; /* Cần thiết để định vị tiêu đề (h1) */
+
+    /* Chuyển các transition từ inline style của React sang CSS */
+    transition: flex 0.5s ease;
+}
+
+/* * Hình ảnh sản phẩm
+ * Đây là TRẠNG THÁI MẶC ĐỊNH (xoay 40 độ)
+ */
+.hero-section__image {
+    /* transform: rotate(40deg); -> Trạng thái mặc định */
+    transform: rotate(40deg);
+    transition: transform 0.5s ease;
+
+    object-fit: contain;
+    width: 100%;
+    max-width: 400px; /* Giới hạn kích thước ảnh để trông đẹp hơn */
+    padding-left: 2rem;
+    box-sizing: border-box; /* Đảm bảo padding không làm vỡ layout */
+}
+
+/* * Tiêu đề sản phẩm
+ * Đây là TRẠNG THÁI MẶC ĐỊNH (ẩn đi)
+ */
+.hero-section__title {
+    /* opacity: 0; -> Trạng thái mặc định */
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    
+    color: white;
+    padding: 0rem 0rem 0rem 2rem;
+    font-weight: 900;
+    font-size: 2em;
+
+    /* Dùng position absolute để tiêu đề không ảnh hưởng đến layout của ảnh */
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    /* Ngăn không cho text bị highlight khi di chuột nhanh */
+    user-select: none; 
+}
+
+/* * ===============================================
+ * TRẠNG THÁI ACTIVE (Khi di chuột vào)
+ * Lớp .active này sẽ được JS thêm/xóa
+ * Tương đương với logic (activeIndex === i) trong React
+ * ===============================================
+ */
+
+/* Khi panel active, nó sẽ rộng ra */
+.hero-section__image-container.active {
+    flex: 2; /* flex: 2; -> Trạng thái active */
+}
+
+/* Khi panel active, ảnh sẽ xoay về 0 */
+.hero-section__image-container.active .hero-section__image {
+    transform: rotate(0deg); /* transform: rotate(0deg); -> Trạng thái active */
+}
+
+/* Khi panel active, tiêu đề sẽ hiện ra */
+.hero-section__image-container.active .hero-section__title {
+    opacity: 1; /* opacity: 1; -> Trạng thái active */
+}

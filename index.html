@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/assets/csss/hero.css">
+    <link rel="stylesheet" href="/assets/csss/color.css">
+    <link rel="stylesheet" href="/assets/csss/product.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/assets/js/taiwind-config.js"></script>
+</head>
+<body>
+    
+    <header id="header" class="bg-white backdrop-blur-lg  sticky top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-black text-brand-navy tracking-wider">
+                <img src="./assets/imgs/xsport.png" class="h-[60px]" alt="Medicallaw Logo" loading="lazy" decoding="async" fetchpriority="low">
+            </a>
+            <div class="hidden md:flex space-x-8 items-center font-semibold">
+                <a href="#gioi-thieu" class="text-gray-700 hover:text-brand-gold transition">Giới Thiệu</a>
+                <a href="#chuong-trinh" class="text-gray-700 hover:text-brand-gold transition">Chương Trình</a>
+                <a href="#dien-gia" class="text-gray-700 hover:text-brand-gold transition">Diễn Giả</a>
+                <a href="#ve-moi" class="text-gray-700 hover:text-brand-gold transition">Đăng ký thành viên</a>
+                <a href="#dang-ky" class="relative z-10 shimmer-btn bg-brand-gold text-white font-bold py-2 px-6 rounded-full hover:bg-brand-gold-dark transition shadow-lg">Đăng Ký</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-brand-navy focus:outline-none"><i class="fas fa-bars text-2xl"></i></button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white pb-3">
+            <a href="#gioi-thieu" class="block px-6 py-3 text-gray-700 hover:bg-gray-100">Giới Thiệu</a>
+            <a href="#chuong-trinh" class="block px-6 py-3 text-gray-700 hover:bg-gray-100">Chương Trình</a>
+            <a href="#dien-gia" class="block px-6 py-3 text-gray-700 hover:bg-gray-100">Diễn Giả</a>
+            <a href="#ve-moi" class="block px-6 py-3 text-gray-700 hover:bg-gray-100">Đăng ký thành viên</a>
+            <a href="#dang-ky" class="block mx-4 my-3 bg-brand-gold text-white text-center font-bold py-3 rounded-full">Đăng Ký</a>
+        </div>
+    </header>
+    <main>
+        <div class="slider-container" id="slider">
+            <div class="slice"></div>
+            <div class="slice"></div>
+            <div class="slice"></div>
+            <div class="slice"></div>
+            <div class="slice"></div>
+            
+            <div class="content-overlay" id="content">
+                <h1 id="title"></h1>
+                <h2 id="subtitle"></h2>
+                <p id="paragraph"></p>
+            </div>
+        </div>
+        <div class="hero-section" id="hero-section">
+
+        </div>
+        <section 
+        class="product-section" 
+        id="product-section" 
+        style="color: white; background: linear-gradient(to left, #000, #333, #000); --title-color: #aaa;"
+    >
+        <div class="product-section__features">
+            <div class="product-section__feature">
+                <p class="product-section__feature-title">QUALITY</p>
+                <p class="product-section__feature-description">
+                    50 hours of playtime, Hyper Sync, Quad Mic Communicate Clearly
+                </p>
+            </div>
+            <div class="product-section__color-selector">
+                <p class="product-section__feature-title">SELECT COLOR</p>
+                <div class="product-section__color-buttons">
+                    <button
+                        class="product-section__color-button"
+                        style="--btn-color: black;"
+                        data-id="0"
+                    ></button>
+                    <button
+                        class="product-section__color-button"
+                        style="--btn-color: white;"
+                        data-id="1"
+                    ></button>
+                    <button
+                        class="product-section__color-button"
+                        style="--btn-color: red;"
+                        data-id="2"
+                    ></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-section__main">
+            <h1 class="product-section__title" id="main-title">
+                APPLE
+            </h1>
+            <img
+                class="product-section__image"
+                id="main-image"
+                src="https://i.ibb.co/WrmX4WP/Black.webp"
+                alt="Black Headphone"
+            />
+            <button class="product-section__buy-button">Buy Now</button>
+        </div>
+
+        <div class="product-section__details">
+            <div class="product-section__detail">
+                <p class="product-section__detail-title">QUAD MIC</p>
+                <p class="product-section__detail-description">
+                    with environmental noise cancelation
+                </p>
+            </div>
+            <div class="product-section__detail">
+                <p class="product-section__detail-title">NO INTERRUPT</p>
+                <p class="product-section__detail-description">
+                    with environmental noise cancelation
+                </p>
+            </div>
+        </div>
+    </section>
+    </main>
+    <script src="./assets/js/index.js"></script>
+    <script src="/assets/js/hero.js"></script>
+    <script src="/assets/js/color.js"></script>
+    <script src="/assets/js/product.js"></script>
+</body>
+</html>
