@@ -1,0 +1,302 @@
+/* === THỬ NGHIỆM MÀU NỀN MỚI === */
+:root {
+    --brand-teal: #14b8a6;
+    --brand-navy-light: #1A1A26; /* Nền section (Xanh than đậm) */
+    --brand-black: #121218;      /* Nền body (Đen-Xanh) */
+}
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: var(--brand-black);
+    color: #F5F5F5;
+    overflow-x: hidden;
+}
+
+/* --- STYLES CHO CÁC NÚT CTA --- */
+.cta-primary {
+    display: inline-block; padding: 0.75rem 1.5rem; background-color: var(--brand-teal); color: #000;
+    font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; border-radius: 30px; border: 2px solid var(--brand-teal);
+    transition: all 0.3s ease; cursor: pointer; text-decoration: none; text-align: center;
+}
+.cta-primary:hover {
+    background-color: transparent; color: var(--brand-teal);
+    box-shadow: 0 0 20px var(--brand-teal); transform: translateY(-3px);
+}
+.cta-secondary {
+    display: inline-block; padding: 0.75rem 1.5rem; background-color: transparent; color: var(--brand-teal);
+    font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; border-radius: 30px; border: 2px solid var(--brand-teal);
+    transition: all 0.3s ease; cursor: pointer; text-decoration: none; text-align: center;
+}
+.cta-secondary:hover {
+    background-color: var(--brand-teal); color: #000;
+    box-shadow: 0 0 20px var(--brand-teal); transform: translateY(-3px);
+}
+.cta-large { padding: 1rem 2.5rem; font-size: 1rem; }
+.shimmer-btn { position: relative; overflow: hidden; }
+.shimmer-btn::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 3s infinite;
+}
+@keyframes shimmer { 0% { left: -100%; } 50% { left: 100%; } 100% { left: 100%; } }
+
+
+/* --- ANIMATION CUỘN TRANG --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    visibility: hidden;
+    transition: opacity 1s cubic-bezier(0.6, 0.2, 0.4, 1), 
+                transform 1s cubic-bezier(0.6, 0.2, 0.4, 1),
+                visibility 1s;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); visibility: visible; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+
+/* --- SECTION 1: HERO SLIDER --- */
+.slider-container { width: 100%; position: relative; background: #000; overflow: hidden; margin: 0 auto; }
+@media (min-width: 769px) { .slider-container { height: 100vh; max-width: 1920px; } }
+@media (max-width: 768px) { .slider-container { aspect-ratio: 16 / 9; max-width: 100%; } }
+.slice {
+    position: absolute; top: -100%; height: 100%; background-repeat: no-repeat;
+    background-position: center; background-size: 500% 100%; opacity: 0;
+    -webkit-backface-visibility: hidden; backface-visibility: hidden;
+    transform: translateZ(0); will-change: transform, top; z-index: 1;
+}
+.slice.active { animation: fall 1.5s ease-out forwards; }
+@media (min-width: 769px) {
+    .slice { width: calc(100% / 5); }
+    .slice:nth-child(1) { left: 0; background-position: 0% 0%; animation-delay: 0s; z-index: 1; }
+    .slice:nth-child(2) { left: calc(100% / 5); background-position: 25% 0%; animation-delay: .15s; margin-left: -0.5px; z-index: 2; }
+    .slice:nth-child(3) { left: calc(100% / 5 * 2); background-position: 50% 0%; animation-delay: .3s; margin-left: -0.5px; z-index: 3; }
+    .slice:nth-child(4) { left: calc(100% / 5 * 3); background-position: 75% 0%; animation-delay: .45s; margin-left: -0.5px; z-index: 4; }
+    .slice:nth-child(5) { left: calc(100% / 5 * 4); background-position: 100% 0%; animation-delay: .6s; margin-left: -0.5px; z-index: 5; }
+}
+@media (max-width: 768px) {
+    .slice { width: calc(100% / 3); }
+    .slice:nth-child(1) { left: 0; background-position: 0% 0%; animation-delay: 0s; z-index: 1; }
+    .slice:nth-child(2) { left: calc(100% / 3); background-position: 50% 0%; animation-delay: .2s; margin-left: -0.5px; z-index: 2; }
+    .slice:nth-child(3) { left: calc(100% / 3 * 2); background-position: 100% 0%; animation-delay: .4s; margin-left: -2.0px; z-index: 3; width: calc((100% / 3) + 2.5px); }
+    .slice:nth-child(4), .slice:nth-child(5) { display: none; }
+}
+@keyframes fall {
+    0%   { top: -100%; opacity: 0; }
+    10%  { opacity: 1; }
+    100% { top: 0%; opacity: 1; }
+}
+.content-overlay {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    text-align: center; color: white; z-index: 10; opacity: 0;
+    width: 80%; max-width: 800px; padding: 20px;
+}
+.content-overlay.show { animation: fadeInUp 1s ease-out forwards; }
+@keyframes fadeInUp {
+    0%   { opacity: 0; transform: translate(-50%, -40%); }
+    100% { opacity: 1; transform: translate(-50%, -50%); }
+}
+.content-overlay h1 { font-size: clamp(2rem, 8vw, 4rem); font-weight: bold; margin-bottom: 20px; text-shadow: 2px 2px 10px rgba(0,0,0,.8); letter-spacing: 2px; }
+.content-overlay h2 { font-size: clamp(1.2rem, 5vw, 2rem); font-weight: 300; margin-bottom: 15px; text-shadow: 2px 2px 8px rgba(0,0,0,.7); }
+.content-overlay p { font-size: clamp(.9rem, 3vw, 1.2rem); line-height: 1.6; text-shadow: 1px 1px 5px rgba(0,0,0,.8); font-weight: 300; }
+
+
+/* --- PRODUCT SWITCHER (Section 6) --- */
+:root { --title-color: #eee; }
+.animate-image-in { animation: image-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-image-out { animation: image-out 0.8s ease-in-out forwards; }
+.animate-title-in { animation: title-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-title-out { animation: title-out 0.6s ease-in forwards; }
+@keyframes image-in {
+    from { transform: translate(500px, -400px) scale(0); opacity: 0; }
+    to { transform: translate(0, 0) scale(1); opacity: 1; }
+}
+@keyframes image-out {
+    from { transform: translate(0, 0) scale(1); opacity: 1; }
+    to { transform: translate(-500px, 200px) scale(0); opacity: 0; }
+}
+@keyframes title-in {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+@keyframes title-out {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(0); opacity: 0; }
+}
+.product-color-button {
+    position: relative; width: 2.5rem; height: 2.5rem; border-radius: 50%;
+    border: 1px solid #aaa; cursor: pointer; transition: all 0.3s ease-in-out;
+}
+.product-color-button:hover { transform: scale(1.05); }
+.product-color-button:active { transform: scale(0.95); }
+.product-color-button::after {
+    content: ""; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); width: 98%; height: 98%;
+    border-radius: 50%; background: var(--btn-color);
+}
+/* Style cho nút active trong form */
+#order-form .product-color-button.active {
+    border: 3px solid var(--brand-teal);
+    box-shadow: 0 0 10px var(--brand-teal);
+    transform: scale(1.05);
+}
+
+
+/* --- CSS KÍNH LÚP (Section 2) --- */
+#loupe-glass {
+    position: absolute;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    width: 350px; /* Kích thước kính */
+    height: 350px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none; 
+    background-repeat: no-repeat;
+    overflow: hidden; 
+}
+#loupe-glass.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* --- *** CSS GALLERY MỚI (Section 5 - EXPANDING PANEL) *** --- */
+.expanding-gallery-container {
+    height: 70vh;
+    max-height: 700px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 3rem;
+    padding: 0 1rem; /* Thêm padding 2 bên */
+}
+
+.gallery-panel {
+    flex: 1; /* Trạng thái mặc định, co lại */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Căn giữa */
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    background-color: var(--brand-navy-light);
+    border-radius: 12px; /* Bo góc */
+    margin: 0 0.5rem; /* Khoảng cách giữa các panel */
+    
+    /* Biến --accent-color sẽ được JS set */
+    border: 2px solid transparent; 
+    
+    /* Hiệu ứng chuyển động */
+    transition: flex 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.gallery-panel-image {
+    transform: rotate(15deg) scale(0.9); /* Thu nhỏ và xoay nhẹ */
+    transition: transform 0.5s ease;
+    object-fit: contain;
+    width: 100%;
+    max-width: 350px; /* Giới hạn kích thước ảnh */
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.gallery-panel-title {
+    opacity: 0;
+    transition: opacity 0.6s ease, color 0.6s ease, text-shadow 0.6s ease;
+    font-family: 'Michroma', sans-serif;
+    color: white;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 5%;
+    user-select: none; 
+    text-shadow: 0 0 10px white; /* Đổ bóng trắng mặc định */
+}
+
+/* --- Trạng thái ACTIVE (Khi di chuột vào) --- */
+.gallery-panel.active {
+    flex: 3; /* Rộng ra */
+    border-color: var(--accent-color);
+    box-shadow: 0 0 30px -5px var(--accent-color);
+}
+
+.gallery-panel.active .gallery-panel-image {
+    transform: rotate(0deg) scale(1); /* Xoay về 0 và phóng to */
+}
+
+.gallery-panel.active .gallery-panel-title {
+    opacity: 1; /* Hiện tiêu đề */
+    color: var(--accent-color);
+    text-shadow: 0 0 20px var(--accent-color);
+}
+/* --- Kết thúc CSS Gallery --- */
+
+
+
+/* --- SECTION 7: FAQ --- */
+.faq-list-button.active {
+    background-color: #000; /* Dùng màu đen tuyền để nổi bật */
+    border-color: var(--brand-teal);
+    box-shadow: 0 5px 20px rgba(20, 184, 166, 0.1);
+}
+.faq-list-button.active .faq-btn-number {
+    color: var(--brand-teal);
+}
+.faq-list-button.active .faq-btn-text {
+    color: var(--brand-teal);
+}
+.faq-list-button.active .faq-btn-icon {
+    background-color: var(--brand-teal);
+    color: #000;
+    transform: rotate(-45deg);
+}
+#faq-display-wrapper {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+#faq-display-wrapper.is-transitioning {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+
+/* --- CSS CHO BỘ CHỌN SIZE (Section 8) --- */
+.size-selector-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    background-color: var(--brand-navy-light);
+    border: 1px solid #444;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.size-selector-label strong {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+.size-selector-label span {
+    transition: color 0.3s ease;
+}
+/* Trạng thái Active (khi radio được check) */
+input[type="radio"]:checked + .size-selector-label {
+    border-color: var(--brand-teal);
+    background-color: #000;
+    box-shadow: 0 0 15px rgba(20, 184, 166, 0.5);
+}
+input[type="radio"]:checked + .size-selector-label strong,
+input[type="radio"]:checked + .size-selector-label span {
+    color: var(--brand-teal);
+}
