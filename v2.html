@@ -32,6 +32,7 @@
     </script>
 
     <style type="text/css">
+        /* --- BIẾN CSS VÀ NỀN TẢNG --- */
         :root {
             --brand-teal: #14b8a6;
             --brand-navy-light: #1a1a1a;
@@ -138,10 +139,14 @@
         
         /* --- SECTION 2: PRODUCT SWITCHER --- */
         :root { --title-color: #eee; }
+        /* Xóa style #main-image, #main-title ban đầu. Để class animation tự xử lý */
+        
         .animate-image-in { animation: image-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
         .animate-image-out { animation: image-out 0.8s ease-in-out forwards; }
         .animate-title-in { animation: title-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
         .animate-title-out { animation: title-out 0.6s ease-in forwards; }
+        
+        /* Thêm 'forwards' để giữ trạng thái cuối */
         @keyframes image-in {
             from { transform: translate(500px, -400px) scale(0); opacity: 0; }
             to { transform: translate(0, 0) scale(1); opacity: 1; }
@@ -171,36 +176,6 @@
         }
 
         
-        /* --- *** MỚI: CSS cho hiệu ứng Kính Lúp (Loupe) *** --- */
-        #loupe-glass {
-            position: absolute;
-            border: 3px solid #fff;
-            border-radius: 50%;
-            width: 350px; /* Kích thước kính */
-            height: 350px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            
-            /* Ẩn ban đầu */
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            
-            /* Ngăn kính lúp tự bắt sự kiện chuột */
-            pointer-events: none; 
-            
-            /* Ảnh nền (JS sẽ set) */
-            background-repeat: no-repeat;
-            
-            /* Quan trọng: để ngăn ảnh tràn ra ngoài */
-            overflow: hidden; 
-        }
-        /* Hiện khi JS thêm class 'visible' */
-        #loupe-glass.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-
         /* --- SECTION 5: GALLERY --- */
         #gallery-section {
             height: 80vh; max-height: 800px; display: flex;
@@ -347,7 +322,7 @@
             </div>
 
             <div class="h-full relative flex-1 flex flex-col justify-center items-center">
-                <h1 class="font-erica absolute top-[5%] text-[6rem] md:text-[10rem] lg:text-[15rem] tracking-[1rem] lg:tracking-[2.125rem] z-0" id="main-title" style="color: var(--title-color);">WAVEX</h1>
+                <h1 class="font-erica absolute top-[20%] text-[6rem] md:text-[10rem] lg:text-[12rem] tracking-[1rem] lg:tracking-[2.125rem] z-0" id="main-title" style="color: var(--title-color);">WAVEX</h1>
                 <img class="w-[300px] md:w-auto md:max-w-[500px] z-10" id="main-image" src="https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png" alt="LEOPARD WAVEX PRO"/>
                 <a href="#order-form" class="cta-primary mt-6 md:mt-0" style="color: #000; font-family: 'Montserrat', sans-serif;">Mua Ngay</a>
             </div>
@@ -403,8 +378,8 @@
                     </div>
                     
                     <div class="reveal reveal-delay-1">
-                        <div id="loupe-container" class="relative rounded-3xl overflow-hidden pt-[100%] shadow-2xl cursor-crosshair">
-                            <img id="loupe-image" src="https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png" alt="Leopard WaveX Pro" class="absolute top-0 left-0 w-full h-full object-cover">
+                        <div class="group relative rounded-3xl overflow-hidden pt-[100%] shadow-2xl">
+                            <img src="https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png" alt="Leopard WaveX Pro" class="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110">
                             <div class="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/70 backdrop-blur-sm flex items-center justify-center text-white text-lg cursor-pointer transition-all duration-300 hover:bg-brand-teal hover:text-black">
                                 <i class="fas fa-search"></i>
                             </div>
@@ -569,7 +544,13 @@
             function initScrollObserver() {
                 const revealElements = document.querySelectorAll(".reveal");
                 if (revealElements.length === 0) return;
-                const observerOptions = { root: null, rootMargin: "0px", threshold: 0.1 };
+
+                const observerOptions = {
+                    root: null,
+                    rootMargin: "0px",
+                    threshold: 0.1 
+                };
+
                 const observerCallback = (entries, observer) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
@@ -577,6 +558,7 @@
                         }
                     });
                 };
+
                 const observer = new IntersectionObserver(observerCallback, observerOptions);
                 revealElements.forEach(el => observer.observe(el));
             }
@@ -585,12 +567,14 @@
             function initHeroSlider() {
                 const heroSection = document.getElementById('hero');
                 if (!heroSection) return;
+
                 const slides = [
                     { image: 'https://pickleplay.vn/cdn/shop/files/z7037608699618_1d61e51545892718911f8d9e81ac5b81.jpg?v=1758519364&width=1600', title: 'CÔNG THỦ TOÀN DIỆN', subtitle: 'LỰA CHỌN LÝ TƯỞNG', paragraph: 'Mạnh mẽ trong tấn công, chính xác trong kiểm soát. Hiệu suất vượt trội cho người chơi bán chuyên và chuyên nghiệp.' },
                     { image: 'https://pickleplay.vn/cdn/shop/files/product_m_u6_b57ef00a-6e62-48f6-97d6-32363e17e5c0.png', title: 'CÔNG NGHỆ VẬT LIỆU CAO CẤP', subtitle: 'CARBON TORAY 3 LỚP TỪ NHẬT BẢN', paragraph: 'Độ bền vượt trội, khả năng bám bóng cao và phản hồi ổn định, giúp kiểm soát bóng chính xác hơn.' },
                     { image: 'https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png', title: 'LÕI GEN 4 TIÊN TIẾN', subtitle: 'TÍCH HỢP 2 VIỀN FOAM + LỚP EVA', paragraph: 'Giảm rung, tăng độ êm và mở rộng điểm ngọt, mang lại cảm giác đánh chắc tay và ổn định.' },
                     { image: 'https://pickleplay.vn/cdn/shop/files/product_m_u2_451c2715-43ec-4171-a66f-6912e6ff6dfc.png', title: 'THIẾT KẾ HIỆN ĐẠI', subtitle: 'TỐI ƯU LỐI CHƠI', paragraph: 'Độ dày 14mm, cán dài 14cm và mặt vợt 19.5x29cm giúp cân bằng lý tưởng giữa sức mạnh và kiểm soát.' }
                 ];
+
                 const slices = document.querySelectorAll('.slice');
                 const contentOverlay = document.getElementById('content');
                 const titleEl = document.getElementById('title');
@@ -598,30 +582,40 @@
                 const paragraphEl = document.getElementById('paragraph');
                 let currentSlide = 0;
                 let timer; 
+
                 function updateBackgroundSize() {
                     const isMobile = window.innerWidth <= 768;
                     const visibleCount = isMobile ? 3 : 5; 
                     const size = `${visibleCount * 100}% 100%`;
                     slices.forEach(slice => { slice.style.backgroundSize = size; });
                 }
+
                 function showSlide(index) {
                     if (timer) clearTimeout(timer); 
+                    
                     const slide = slides[index];
+                    
                     slices.forEach(slice => {
                         slice.style.backgroundImage = `url('${slide.image}')`;
                         slice.classList.remove('active');
                     });
+
                     contentOverlay.classList.remove('show');
+                    
                     setTimeout(() => {
                         slices.forEach(slice => {
-                            if (window.innerWidth <= 768 && (slice === slices[3] || slice === slices[4])) { return; }
+                            if (window.innerWidth <= 768 && (slice === slices[3] || slice === slices[4])) {
+                                return; 
+                            }
                             slice.classList.add('active');
                         });
+
                         setTimeout(() => {
                             titleEl.textContent = slide.title;
                             subtitleEl.textContent = slide.subtitle;
                             paragraphEl.textContent = slide.paragraph;
                             contentOverlay.classList.add('show');
+
                             timer = setTimeout(() => {
                                 currentSlide = (currentSlide + 1) % slides.length;
                                 showSlide(currentSlide);
@@ -629,15 +623,17 @@
                         }, 2100); // 2.1 giây
                     }, 100);
                 }
+
                 updateBackgroundSize();
                 showSlide(0);
                 window.addEventListener('resize', updateBackgroundSize);
             }
 
-            // Module 4: Product Switcher (Đã sửa lỗi)
+            // Module 4: Product Switcher (*** ĐÃ SỬA LỖI LOGIC ***)
             function initProductSwitcher() {
                 const productSection = document.getElementById('product-section');
                 if (!productSection) return;
+
                 const data = [
                     { id: 0, title: "WAVEX - PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "linear-gradient(to left, #7d3a9e, #A54DCF, #7d3a9e)", "font-color": "white", "title-color": "#eee" },
                     { id: 1, title: "WAVEX - RED", image: "https://pickleplay.vn/cdn/shop/files/product_m_u6_b57ef00a-6e62-48f6-97d6-32363e17e5c0.png", background: "linear-gradient(to left, #c41818, #F61F1F, #c41818)", "font-color": "white", "title-color": "#eee" },
@@ -648,11 +644,14 @@
                     { id: 6, title: "WAVEX - WHITE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u3_58c92a3a-1cc8-434b-b656-1f73937204cc.png", background: "linear-gradient(to left, #ccc, #FFFFFF, #ccc)", "font-color": "black", "title-color": "#555" },
                     { id: 7, title: "WAVEX - LIME GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "linear-gradient(to left, #7ca02c, #95BE35, #7ca02c)", "font-color": "black", "title-color": "#555" }
                 ];
+
                 let currentItem = 0;
                 let isAnimating = false; 
+
                 const mainImage = document.getElementById("main-image");
                 const mainTitle = document.getElementById("main-title");
                 const colorButtons = document.querySelectorAll(".product-color-button");
+
                 function updateContent(id) {
                     const newData = data[id];
                     productSection.style.background = newData.background;
@@ -663,41 +662,71 @@
                     mainImage.alt = newData.title;
                     currentItem = id;
                 }
+
+                // *** HÀM ĐÃ SỬA LỖI ***
                 function animateIn() {
                     isAnimating = true;
+                    // Xóa class 'out'
                     mainImage.classList.remove('animate-image-out');
                     mainTitle.classList.remove('animate-title-out');
+                    
+                    // Thêm class 'in'
                     mainImage.classList.add('animate-image-in');
                     mainTitle.classList.add('animate-title-in');
+                    
+                    // Chờ cả hai animation kết thúc
                     Promise.all([
                         new Promise(resolve => mainImage.addEventListener('animationend', resolve, { once: true })),
                         new Promise(resolve => mainTitle.addEventListener('animationend', resolve, { once: true }))
                     ]).then(() => {
                         isAnimating = false;
+                        // Quan trọng: KHÔNG XÓA class 'in' ở đây.
+                        // Cứ để nó ở đó, hàm animateOut sẽ dọn dẹp.
                     });
                 }
+
+                // *** HÀM ĐÃ SỬA LỖI ***
                 function animateOut() {
                     isAnimating = true;
+                    // Xóa class 'in'
                     mainImage.classList.remove('animate-image-in');
                     mainTitle.classList.remove('animate-title-in');
+                    
+                    // Thêm class 'out'
                     mainImage.classList.add('animate-image-out');
                     mainTitle.classList.add('animate-title-out');
+                    
+                    // Hàm animateOut không cần đợi, 
+                    // vì listener trong handleButtonClick đang đợi nó
                 }
+
                 function handleButtonClick(id) {
                     if (id === currentItem || isAnimating) { return; }
                     animateOut();
+                    
+                    // Đợi animation 'out' của ẢNH kết thúc
                     mainImage.addEventListener('animationend', () => {
-                        updateContent(id);
-                        animateIn();
+                        updateContent(id); // Cập nhật nội dung
+                        animateIn();       // Chạy animation 'in'
                     }, { once: true });
                 }
+
                 colorButtons.forEach(button => {
                     const id = parseInt(button.dataset.id, 10);
                     button.addEventListener("click", () => {
                         handleButtonClick(id);
                     });
                 });
+
+                // *** HÀM CHẠY LẦN ĐẦU ĐÃ SỬA LỖI ***
                 updateContent(0);
+                // Xóa các inline style. CSS (từ keyframe 'from') sẽ tự xử lý.
+                // mainImage.style.opacity = 0; 
+                // mainTitle.style.opacity = 0;
+                // mainImage.style.transform = "translate(500px, -400px) scale(0)";
+                // mainTitle.style.transform = "scale(0)";
+                
+                // Chạy animation 'in' lần đầu
                 requestAnimationFrame(() => {
                     animateIn();
                 });
@@ -707,6 +736,7 @@
             function initGallery() {
                 const gallerySection = document.getElementById("gallery-section");
                 if (!gallerySection) return;
+
                 const data = [
                     { id: 0, name: "WAVEX - PURPLE", color: "PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", colorHEX: "#A54DCF" },
                     { id: 1, name: "WAVEX - RED", color: "RED", image: "https://pickleplay.vn/cdn/shop/files/product_m_u6_b57ef00a-6e62-48f6-97d6-32363e17e5c0.png", colorHEX: "#F61F1F" },
@@ -717,19 +747,24 @@
                     { id: 6, name: "WAVEX - WHITE", color: "WHITE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u3_58c92a3a-1cc8-434b-b656-1f73937204cc.png", colorHEX: "#FFFFFF" },
                     { id: 7, name: "WAVEX - LIME GREEN", color: "LIME GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", colorHEX: "#95BE35" }
                 ];
+                
                 const fragment = document.createDocumentFragment();
+
                 data.forEach(item => {
                     const panel = document.createElement('div');
                     panel.className = 'gallery-panel';
                     panel.style.setProperty('--accent-color', item.colorHEX);
+                    
                     panel.innerHTML = `
                         <img class="gallery-image" src="${item.image}" alt="${item.name}" />
                         <h1 class="gallery-title">${item.color}</h1>
                     `;
                     fragment.appendChild(panel);
                 });
+
                 gallerySection.innerHTML = "";
                 gallerySection.appendChild(fragment);
+
                 const allPanels = gallerySection.querySelectorAll(".gallery-panel");
                 allPanels.forEach(panel => {
                     panel.addEventListener("mouseenter", () => {
@@ -746,29 +781,36 @@
             function initFAQ() {
                 const faqSection = document.getElementById('faq');
                 if (!faqSection) return;
+
                 const faqData = [
                     { id: 0, number: "/01", question: "Vợt này phù hợp với người chơi nào?", answer: "Leopard Wave X là lựa chọn hoàn hảo cho người chơi Pickleball tìm kiếm một cây vợt công thủ toàn diện, lý tưởng cho cả người chơi bán chuyên lẫn chuyên nghiệp muốn nâng cao hiệu suất thi đấu.", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png" },
                     { id: 1, number: "/02", question: "Ưu điểm của Lõi Gen 4 & Carbon Toray?", answer: "Mặt Carbon Toray 3 lớp siêu bền, bám bóng tốt. Lõi Gen 4 + EVA giúp giảm rung, tăng độ êm và mở rộng điểm ngọt (sweet spot), mang lại cảm giác đánh chắc tay và ổn định ngay cả ở tốc độ cao.", image: "https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png" },
                     { id: 2, number: "/03", question: "Chip NFC để làm gì và sử dụng thế nào?", answer: "Chip NFC dùng để kiểm tra hàng chính hãng. Bạn chỉ cần bật NFC trên điện thoại thông minh và chạm vào vị trí có chip trên vợt, điện thoại sẽ tự động hiển thị thông tin xác thực sản phẩm.", image: "https://pickleplay.vn/cdn/shop/files/product_m_u3_58c92a3a-1cc8-434b-b656-1f73937204cc.png" }
                 ];
+
                 const questionButtons = document.querySelectorAll(".faq-list-button");
                 const display_Wrapper = document.getElementById("faq-display-wrapper");
                 const display_Number = document.getElementById("faq-display-number");
                 const display_Image = document.getElementById("faq-display-image");
                 const display_Question = document.getElementById("faq-display-question");
                 const display_Answer = document.getElementById("faq-display-answer");
+
                 function displayFAQ(id) {
                     const data = faqData.find(item => item.id == id);
                     if (!data || display_Wrapper.dataset.activeId == id) return; 
+
                     display_Wrapper.classList.add('is-transitioning');
                     display_Wrapper.dataset.activeId = id; 
+
                     setTimeout(() => {
                         display_Number.textContent = data.number;
                         display_Image.src = data.image;
                         display_Question.textContent = data.question;
                         display_Answer.textContent = data.answer;
+                        
                         display_Wrapper.classList.remove('is-transitioning');
                     }, 300); 
+
                     questionButtons.forEach(button => {
                         if (button.dataset.faqId == id) {
                             button.classList.add("active");
@@ -777,6 +819,7 @@
                         }
                     });
                 }
+
                 questionButtons.forEach(button => {
                     button.addEventListener("click", () => {
                         const id = button.dataset.faqId;
@@ -785,74 +828,6 @@
                 });
             }
 
-            // *** MỚI: Module 7: Image Loupe/Magnifier ***
-            function initImageLoupe() {
-                const container = document.getElementById('loupe-container');
-                const img = document.getElementById('loupe-image');
-                if (!container || !img) return;
-
-                // 1. Tạo kính lúp
-                const loupe = document.createElement('div');
-                loupe.id = 'loupe-glass';
-                container.appendChild(loupe);
-
-                const zoom = 2.5; // Mức độ phóng to
-
-                function showLoupe() {
-                    // Lấy kích thước thật của ảnh đang hiển thị
-                    const imgWidth = img.clientWidth;
-                    const imgHeight = img.clientHeight;
-
-                    // Set ảnh nền và kích thước zoom cho kính
-                    loupe.style.backgroundImage = `url(${img.src})`;
-                    loupe.style.backgroundSize = `${imgWidth * zoom}px ${imgHeight * zoom}px`;
-                    
-                    // Hiện kính
-                    loupe.classList.add('visible');
-                }
-
-                function hideLoupe() {
-                    loupe.classList.remove('visible');
-                }
-
-                function moveLoupe(e) {
-                    // Lấy vị trí của container so với viewport
-                    const rect = container.getBoundingClientRect();
-                    
-                    // Vị trí của chuột so với container
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    const loupeWidth = loupe.offsetWidth;
-                    const loupeHeight = loupe.offsetHeight;
-
-                    // 1. Di chuyển kính lúp (tâm ở con trỏ)
-                    loupe.style.left = `${x - loupeWidth / 2}px`;
-                    loupe.style.top = `${y - loupeHeight / 2}px`;
-
-                    // 2. Di chuyển ảnh nền (ngược lại và đã zoom)
-                    // Tỷ lệ vị trí chuột (0.0 -> 1.0)
-                    const xRatio = x / img.clientWidth;
-                    const yRatio = y / img.clientHeight;
-
-                    // Kích thước ảnh nền đã zoom
-                    const bgWidth = img.clientWidth * zoom;
-                    const bgHeight = img.clientHeight * zoom;
-
-                    // Tính toán vị trí ảnh nền
-                    const bgX = -((bgWidth * xRatio) - (loupeWidth / 2));
-                    const bgY = -((bgHeight * yRatio) - (loupeHeight / 2));
-
-                    loupe.style.backgroundPosition = `${bgX}px ${bgY}px`;
-                }
-
-                // Gán sự kiện
-                container.addEventListener('mouseenter', showLoupe);
-                container.addEventListener('mouseleave', hideLoupe);
-                container.addEventListener('mousemove', moveLoupe);
-            }
-
-
             // --- BỘ ĐIỀU KHIỂN CHẠY ---
             initMobileMenu();
             initScrollObserver();
@@ -860,7 +835,6 @@
             initProductSwitcher();
             initGallery();
             initFAQ();
-            initImageLoupe(); // *** MỚI: Chạy module Kính Lúp ***
 
         });
     </script>
