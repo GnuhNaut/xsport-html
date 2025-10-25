@@ -15,16 +15,16 @@
 </head>
 <body>
     
-    <header id="header" class="bg-white backdrop-blur-lg  sticky top-0 z-50 transition-all duration-300">
+    <header id="header" class="bg-black backdrop-blur-lg  sticky top-0 z-50 transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-black text-brand-navy tracking-wider">
+            <a href="#" class="text-2xl tracking-wider">
                 <img src="./assets/imgs/xsport.png" class="h-[60px]" alt="Medicallaw Logo" loading="lazy" decoding="async" fetchpriority="low">
             </a>
             <div class="hidden md:flex space-x-8 items-center font-semibold">
-                <a href="#gioi-thieu" class="text-gray-700 hover:text-brand-gold transition">Giới Thiệu</a>
-                <a href="#chuong-trinh" class="text-gray-700 hover:text-brand-gold transition">Chương Trình</a>
-                <a href="#dien-gia" class="text-gray-700 hover:text-brand-gold transition">Diễn Giả</a>
-                <a href="#ve-moi" class="text-gray-700 hover:text-brand-gold transition">Đăng ký thành viên</a>
+                <a href="#gioi-thieu" class="text-white hover:text-brand-gold transition">Giới Thiệu</a>
+                <a href="#chuong-trinh" class="text-white hover:text-brand-gold transition">Chương Trình</a>
+                <a href="#dien-gia" class="text-white hover:text-brand-gold transition">Diễn Giả</a>
+                <a href="#ve-moi" class="text-white hover:text-brand-gold transition">Đăng ký thành viên</a>
                 <a href="#dang-ky" class="relative z-10 shimmer-btn bg-brand-gold text-white font-bold py-2 px-6 rounded-full hover:bg-brand-gold-dark transition shadow-lg">Đăng Ký</a>
             </div>
             <div class="md:hidden">
@@ -53,8 +53,11 @@
                 <p id="paragraph"></p>
             </div>
         </div>
+        <div class="hero-wrapper">
+
         <div class="hero-section" id="hero-section">
 
+        </div>
         </div>
         <section 
         class="product-section" 
@@ -70,21 +73,46 @@
             </div>
             <div class="product-section__color-selector">
                 <p class="product-section__feature-title">SELECT COLOR</p>
-                <div class="product-section__color-buttons">
+                <div class="product-section__color-buttons grid grid-cols-4 gap-3">
                     <button
                         class="product-section__color-button"
-                        style="--btn-color: black;"
+                        style="--btn-color: #A54DCF;"
                         data-id="0"
                     ></button>
                     <button
                         class="product-section__color-button"
-                        style="--btn-color: white;"
+                        style="--btn-color: #F61F1F;"
                         data-id="1"
                     ></button>
                     <button
                         class="product-section__color-button"
-                        style="--btn-color: red;"
+                        style="--btn-color: #93CEE6;"
                         data-id="2"
+                    ></button>
+                    <button
+                        class="product-section__color-button"
+                        style="--btn-color: #04AA3D;"
+                        data-id="3"
+                    ></button>
+                    <button
+                        class="product-section__color-button"
+                        style="--btn-color: #E37097;"
+                        data-id="4"
+                    ></button>
+                    <button
+                        class="product-section__color-button"
+                        style="--btn-color: #FF8A00;"
+                        data-id="5"
+                    ></button>
+                    <button
+                        class="product-section__color-button"
+                        style="--btn-color: #FFFFFF;"
+                        data-id="6"
+                    ></button>
+                    <button
+                        class="product-section__color-button"
+                        style="--btn-color: #95BE35;"
+                        data-id="7"
                     ></button>
                 </div>
             </div>
@@ -92,7 +120,7 @@
 
         <div class="product-section__main">
             <h1 class="product-section__title" id="main-title">
-                APPLE
+                WAVEX
             </h1>
             <img
                 class="product-section__image"
@@ -100,22 +128,7 @@
                 src="https://i.ibb.co/WrmX4WP/Black.webp"
                 alt="Black Headphone"
             />
-            <button class="product-section__buy-button">Buy Now</button>
-        </div>
-
-        <div class="product-section__details">
-            <div class="product-section__detail">
-                <p class="product-section__detail-title">QUAD MIC</p>
-                <p class="product-section__detail-description">
-                    with environmental noise cancelation
-                </p>
-            </div>
-            <div class="product-section__detail">
-                <p class="product-section__detail-title">NO INTERRUPT</p>
-                <p class="product-section__detail-description">
-                    with environmental noise cancelation
-                </p>
-            </div>
+            <button class="product-section__buy-button">Mua Ngay</button>
         </div>
     </section>
     </main>

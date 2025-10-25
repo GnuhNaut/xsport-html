@@ -1,6 +1,6 @@
 const slides = [
     {
-        image: 'https://albertofreelance.com/img/slider-vertical/slider1.webp',
+        image: 'https://pickleplay.vn/cdn/shop/files/z7037608699618_1d61e51545892718911f8d9e81ac5b81.jpg?v=1758519364&width=1600',
         title: 'Explora el Mundo',
         subtitle: 'Descubre lugares increíbles',
         paragraph: 'Vive experiencias únicas en los destinos más espectaculares del planeta'

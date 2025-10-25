@@ -5,30 +5,75 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = [
         {
             id: 0,
-            title: "Black Headphone",
-            image: "https://i.ibb.co/WrmX4WP/Black.webp",
-            background: "linear-gradient(to left, #000, #333, #000)",
-            color: "black",
+            title: "Campus 00s Gray White",
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png",
+            background: "linear-gradient(to left, #7d3a9e, #A54DCF, #7d3a9e)",
+            color: "#A54DCF",
             "font-color": "white",
-            "title-color": "#aaa"
+            "title-color": "#eee"
         },
         {
             id: 1,
-            title: "White Headphone",
-            image: "https://i.ibb.co/1fSY6S6w/White.webp",
-            background: "linear-gradient(to left, #ccc, #fff, #ccc)",
-            color: "white",
-            "font-color": "black",
-            "title-color": "#aaa"
+            title: "Campus 00s Burgundy White",
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u6_b57ef00a-6e62-48f6-97d6-32363e17e5c0.png",
+            background: "linear-gradient(to left, #c41818, #F61F1F, #c41818)",
+            color: "#F61F1F",
+            "font-color": "white",
+            "title-color": "#eee"
         },
         {
             id: 2,
-            title: "Red Headphone",
-            image: "https://i.ibb.co/LdXsmS8n/Red.webp",
-            color: "red",
-            background: "linear-gradient(to left, #e1524c, #ce8780, #e1524c)",
+            title: "Campus 00s Beige White",
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png",
+            background: "linear-gradient(to left, #6faac2, #93CEE6, #6faac2)",
+            color: "#93CEE6",
+            "font-color": "black",
+            "title-color": "#555"
+        },
+        {
+            id: 3,
+            title: "Campus 00s Blue White",
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png",
+            background: "linear-gradient(to left, #03832f, #04AA3D, #03832f)",
+            color: "#04AA3D",
             "font-color": "white",
             "title-color": "#eee"
+        },
+        {
+            id: 4,
+            title: "Campus 00s Gray White",
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u2_451c2715-43ec-4171-a66f-6912e6ff6dfc.png",
+            background: "linear-gradient(to left, #d64c7b, #E37097, #d64c7b)",
+            color: "#E37097",
+            "font-color": "white",
+            "title-color": "#eee"
+        },
+        {
+            id: 5,
+            title: "Campus 00s Burgundy White",
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png",
+            background: "linear-gradient(to left, #d97600, #FF8A00, #d97600)",
+            color: "#FF8A00",
+            "font-color": "black",
+            "title-color": "#555"
+        },
+        {
+            id: 6,
+            title: "Campus 00s Beige White",
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u3_58c92a3a-1cc8-434b-b656-1f73937204cc.png",
+            background: "linear-gradient(to left, #ccc, #FFFFFF, #ccc)",
+            color: "#FFFFFF",
+            "font-color": "black",
+            "title-color": "#555"
+        },
+        {
+            id: 7,
+            title: "Campus 00s Blue White",
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png",
+            background: "linear-gradient(to left, #7ca02c, #95BE35, #7ca02c)",
+            color: "#95BE35",
+            "font-color": "black",
+            "title-color": "#555"
         }
     ];
 

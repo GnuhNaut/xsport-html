@@ -1,20 +1,10 @@
-/* Nhúng font từ Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600;700&family=Montserrat:wght@300;400&display=swap");
-
-/* Reset CSS cơ bản */
-body {
-    margin: 0;
-    font-family: "Montserrat", sans-serif;
-    background-color: #f0f0f0;
-}
-
 /* * Container chính, tương đương với <div className="hero-section">
  * Sử dụng flex để sắp xếp các panel con theo chiều ngang.
  */
 .hero-section {
-    height: 100vh;
+    height: 50vh;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-center;
     overflow: hidden; /* Ngăn cuộn trang ngang khi panel mở rộng */
 }
 

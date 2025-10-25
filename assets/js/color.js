@@ -7,57 +7,57 @@ document.addEventListener("DOMContentLoaded", function() {
             id: 0,
             name: "Campus 00s Gray White",
             color: "Gray White",
-            image: "https://i.ibb.co/wh3gkvpV/Gray-Adidas.webp",
-            colorHEX: "#a1a5a4"
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png",
+            colorHEX: "#A54DCF"
         },
         {
             id: 1,
             name: "Campus 00s Burgundy White",
             color: "Burgundy White",
-            image: "https://i.ibb.co/Gvp9gJCB/Burgundy-Adidas.webp",
-            colorHEX: "#833c48"
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u6_b57ef00a-6e62-48f6-97d6-32363e17e5c0.png",
+            colorHEX: "#F61F1F"
         },
         {
             id: 2,
             name: "Campus 00s Beige White",
             color: "Beige White",
-            image: "https://i.ibb.co/tpbR84j2/Beige-Adidas.webp",
-            colorHEX: "#bdada3"
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png",
+            colorHEX: "#93CEE6"
         },
         {
             id: 3,
             name: "Campus 00s Blue White",
             color: "Blue White",
-            image: "https://i.ibb.co/6K8fpS6/Blue-Adidas.webp",
-            colorHEX: "#373860"
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png",
+            colorHEX: "#04AA3D"
         },
         {
             id: 4,
             name: "Campus 00s Gray White",
             color: "Gray White",
-            image: "https://i.ibb.co/wh3gkvpV/Gray-Adidas.webp",
-            colorHEX: "#a1a5a4"
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u2_451c2715-43ec-4171-a66f-6912e6ff6dfc.png",
+            colorHEX: "#E37097"
         },
         {
             id: 5,
             name: "Campus 00s Burgundy White",
             color: "Burgundy White",
-            image: "https://i.ibb.co/Gvp9gJCB/Burgundy-Adidas.webp",
-            colorHEX: "#833c48"
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png",
+            colorHEX: "#FF8A00"
         },
         {
             id: 6,
             name: "Campus 00s Beige White",
             color: "Beige White",
-            image: "https://i.ibb.co/tpbR84j2/Beige-Adidas.webp",
-            colorHEX: "#bdada3"
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u3_58c92a3a-1cc8-434b-b656-1f73937204cc.png",
+            colorHEX: "#FFFFFF"
         },
         {
             id: 7,
             name: "Campus 00s Blue White",
             color: "Blue White",
-            image: "https://i.ibb.co/6K8fpS6/Blue-Adidas.webp",
-            colorHEX: "#373860"
+            image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png",
+            colorHEX: "#95BE35"
         }
     ];
 
