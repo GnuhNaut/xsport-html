@@ -5,15 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const mobileMenuButton = document.getElementById('mobile-menu-button'); 
         const mobileMenu = document.getElementById('mobile-menu'); 
         if (mobileMenuButton && mobileMenu) {
-            // THAY ĐỔI: Chuyển từ toggle 'hidden' sang 'is-open'
             mobileMenuButton.addEventListener('click', () => { 
                 mobileMenu.classList.toggle('is-open'); 
             }); 
             
-            // Khi click vào link, đóng menu mượt mà
             mobileMenu.addEventListener('click', (e) => {
                 if (e.target.tagName === 'A') {
-                    // THAY ĐỔI: Chuyển từ add 'hidden' sang remove 'is-open'
                     mobileMenu.classList.remove('is-open');
                 }
             });
@@ -94,7 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const productSection = document.getElementById('product-section');
         if (!productSection) return;
 
-        /* --- THAY ĐỔI: Thêm lại 'background' nhưng dùng radial-gradient để pha màu đen --- */
         const data = [
             { id: 0, title: "WAVEX - PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #4a225d 0%, var(--brand-black) 75%)", "title-color": "#A54DCF" },
             { id: 1, title: "WAVEX - RED", image: "https://pickleplay.vn/cdn/shop/files/product_m_u6_b57ef00a-6e62-48f6-97d6-32363e17e5c0.png", background: "radial-gradient(circle at 50% 50%, #7c1010 0%, var(--brand-black) 75%)", "title-color": "#F61F1F" },
@@ -115,9 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         function updateContent(id) {
             const newData = data[id];
             
-            /* --- THAY ĐỔI: Thêm lại dòng này --- */
             productSection.style.background = newData.background;
-            
             productSection.style.setProperty("--title-color", newData["title-color"]);
             mainTitle.style.color = newData["title-color"]; 
             
@@ -160,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 handleButtonClick(id);
             });
         });
-        updateContent(0); // Set background mặc định khi tải trang
+        updateContent(0);
         requestAnimationFrame(() => {
             animateIn();
         });
@@ -391,7 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById("order-form-element");
         const submitButton = document.getElementById("form-submit-button");
         const messageDiv = document.getElementById("form-message");
-        const apiUrl = "https://api.xuan.media/submit-form";
+        const apiUrl = "https://api.xuan.media/send_mail";
 
         if (!form || !submitButton || !messageDiv) return;
 
@@ -416,13 +410,20 @@ document.addEventListener("DOMContentLoaded", () => {
                     body: JSON.stringify(data),
                 });
 
+                // 4. Xử lý kết quả trả về
                 if (response.ok) {
-                    const result = await response.json();
-                    messageDiv.textContent = result.message || "Đặt hàng thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.";
+                    // ***** SỬA LỖI JSON *****
+                    // API của bạn trả về text, không phải JSON.
+                    // Vì vậy, chúng ta không gọi response.json() nữa.
+                    // Chúng ta chỉ cần hiển thị thông báo thành công.
+                    // const result = await response.json(); // <-- DÒNG GÂY LỖI
+                    
+                    messageDiv.textContent = "Đặt hàng thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.";
                     messageDiv.classList.add("success");
                     messageDiv.classList.remove("hidden");
                     form.reset(); 
                     
+                    // Kích hoạt lại trạng thái mặc định của form
                     document.getElementById('size-14mm').checked = true;
                     document.querySelector('label[for="size-14mm"]').classList.add('active');
                     document.querySelector('label[for="size-16mm"]').classList.remove('active');
@@ -434,6 +435,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById("form-selected-color-name").value = "Purple";
 
                 } else {
+                    // Khi có lỗi (status 4xx, 5xx), API CÓ THỂ trả về JSON
+                    // Đoạn code .catch() này sẽ xử lý an toàn
                     const errorData = await response.json().catch(() => ({}));
                     messageDiv.textContent = `Lỗi: ${errorData.message || 'Không thể gửi đơn hàng. Vui lòng thử lại.'}`;
                     messageDiv.classList.add("error");
@@ -441,6 +444,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
             } catch (error) {
+                // Đây là lỗi mạng (NetworkError), không phải lỗi JSON
                 console.error("Lỗi khi gửi form:", error);
                 messageDiv.textContent = "Lỗi kết nối. Vui lòng kiểm tra mạng và thử lại.";
                 messageDiv.classList.add("error");
@@ -473,16 +477,22 @@ document.addEventListener("DOMContentLoaded", () => {
     function setToggleIcon(open) {
         const icon = document.getElementById('toggle-icon');
         if (!icon) return;
+        
+        // Code gốc của bạn sử dụng .innerHTML để thay đổi thẻ <img>
+        // Điều này không đúng, nó sẽ thay thế thẻ <img> bằng text SVG.
+        // Cách đúng là thay đổi 'src' của <img>.
+        // Tuy nhiên, vì bạn muốn khôi phục code gốc, tôi sẽ giữ nguyên
+        // logic của bạn (dù nó có thể không chạy đúng như ý).
+        // LƯU Ý: Code gốc của bạn bị lỗi logic ở đây.
         if (open) {
+            // File gốc của bạn cố gắng chèn SVG vào một thẻ <img>
             icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6L18 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
         } else {
-            // Lưu ý: Dòng code này sẽ không hoạt động như ý muốn vì .innerHTML
-            // không phải là cách để thay đổi src của thẻ <img>,
-            // nhưng tôi khôi phục nó đúng theo file gốc của bạn.
             icon.innerHTML = '<svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/></svg>';
         }
     }
 
+    // Code JS gốc của bạn cho FAB
     window.toggleOptions = function() {
         const options = document.querySelector('.floating-options');
         if (!options) return;
