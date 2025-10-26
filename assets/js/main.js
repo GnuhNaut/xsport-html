@@ -225,41 +225,123 @@ document.addEventListener("DOMContentLoaded", () => {
     function initFAQ() {
         const faqSection = document.getElementById('faq');
         if (!faqSection) return;
+
+        // Dữ liệu FAQ (giữ nguyên)
         const faqData = [
             { id: 0, number: "/01", question: "Vợt này phù hợp với người chơi nào?", answer: "Leopard Wave X là lựa chọn hoàn hảo cho người chơi Pickleball tìm kiếm một cây vợt công thủ toàn diện, lý tưởng cho cả người chơi bán chuyên lẫn chuyên nghiệp muốn nâng cao hiệu suất thi đấu.", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png" },
             { id: 1, number: "/02", question: "Ưu điểm của Lõi Gen 4 & Carbon Toray?", answer: "Mặt Carbon Toray 3 lớp siêu bền, bám bóng tốt. Lõi Gen 4 + EVA giúp giảm rung, tăng độ êm và mở rộng điểm ngọt (sweet spot), mang lại cảm giác đánh chắc tay và ổn định ngay cả ở tốc độ cao.", image: "https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png" },
             { id: 2, number: "/03", question: "Chip NFC để làm gì và sử dụng thế nào?", answer: "Chip NFC dùng để kiểm tra hàng chính hãng. Bạn chỉ cần bật NFC trên điện thoại thông minh và chạm vào vị trí có chip trên vợt, điện thoại sẽ tự động hiển thị thông tin xác thực sản phẩm.", image: "https://pickleplay.vn/cdn/shop/files/product_m_u3_58c92a3a-1cc8-434b-b656-1f73937204cc.png" }
         ];
-        const questionButtons = document.querySelectorAll(".faq-list-button");
+
+        // Các thành phần DOM cho chế độ Desktop
         const display_Wrapper = document.getElementById("faq-display-wrapper");
         const display_Number = document.getElementById("faq-display-number");
         const display_Question = document.getElementById("faq-display-question");
         const display_Answer = document.getElementById("faq-display-answer");
-        function displayFAQ(id) {
+        
+        // Tất cả các nút câu hỏi
+        const questionButtons = document.querySelectorAll(".faq-list-button");
+
+        // *** BƯỚC 1: Tự động tạo các panel trả lời cho mobile ***
+        // Chèn các div trả lời ngay sau mỗi button trong HTML
+        questionButtons.forEach(button => {
+            const id = button.dataset.faqId;
             const data = faqData.find(item => item.id == id);
-            if (!data || display_Wrapper.dataset.activeId == id) return; 
+            if (data) {
+                const answerPanel = document.createElement('div');
+                answerPanel.className = 'faq-mobile-answer'; // Class CSS đã tạo ở trên
+                answerPanel.innerHTML = `<p>${data.answer}</p>`;
+                // Chèn panel ngay sau button
+                button.insertAdjacentElement('afterend', answerPanel);
+            }
+        });
+
+        // Lấy tất cả các panel trả lời vừa tạo
+        const answerPanels = document.querySelectorAll(".faq-mobile-answer");
+
+        // *** BƯỚC 2: Hàm xử lý cho Desktop (Logic cũ) ***
+        function displayFAQDesktop(id) {
+            const data = faqData.find(item => item.id == id);
+            // Kiểm tra xem các phần tử DOM có tồn tại không
+            if (!data || !display_Wrapper) return; 
+            // Nếu click lại mục đang active thì không làm gì
+            if (display_Wrapper.dataset.activeId == id) return;
+
             display_Wrapper.classList.add('is-transitioning');
             display_Wrapper.dataset.activeId = id; 
+            
             setTimeout(() => {
-                display_Number.textContent = data.number;
-                display_Question.textContent = data.question;
-                display_Answer.textContent = data.answer;
+                if (display_Number) display_Number.textContent = data.number;
+                if (display_Question) display_Question.textContent = data.question;
+                if (display_Answer) display_Answer.textContent = data.answer;
                 display_Wrapper.classList.remove('is-transitioning');
             }, 300); 
+
+            // Chỉ thêm/xóa class active cho button
             questionButtons.forEach(button => {
-                if (button.dataset.faqId == id) {
-                    button.classList.add("active");
-                } else {
-                    button.classList.remove("active");
-                }
+                button.classList.toggle("active", button.dataset.faqId == id);
             });
         }
+
+        // *** BƯỚC 3: Hàm xử lý cho Mobile (Logic Accordion) ***
+        function handleMobileClick(clickedButton) {
+            const wasActive = clickedButton.classList.contains("active");
+
+            // Đóng tất cả các mục
+            questionButtons.forEach(button => {
+                button.classList.remove("active");
+                // CSS sẽ tự động ẩn panel khi class 'active' bị xóa
+            });
+
+            // Nếu mục vừa click KHÔNG PHẢI là mục đã active, thì mở nó ra
+            if (!wasActive) {
+                clickedButton.classList.add("active");
+                // CSS sẽ tự động hiện panel khi class 'active' được thêm
+            }
+            // Nếu click lại mục đã active, nó sẽ đóng lại (do đã remove active ở trên)
+        }
+
+        // *** BƯỚC 4: Gán sự kiện click với kiểm tra màn hình ***
         questionButtons.forEach(button => {
             button.addEventListener("click", () => {
                 const id = button.dataset.faqId;
-                displayFAQ(id);
+                
+                // Kiểm tra breakpoint (1024px = 'lg' của Tailwind)
+                if (window.innerWidth < 1024) { 
+                    // Chế độ Mobile: Accordion
+                    handleMobileClick(button);
+                } else {
+                    // Chế độ Desktop: Hiển thị 1 khối
+                    displayFAQDesktop(id);
+                }
             });
         });
+
+        // *** BƯỚC 5: Xử lý khi resize cửa sổ (Rất quan trọng) ***
+        // Đảm bảo giao diện không bị lỗi khi xoay/thay đổi kích thước
+        window.addEventListener('resize', () => {
+            // Nếu resize VỀ desktop
+            if (window.innerWidth >= 1024) {
+                // Đóng tất cả accordion mobile
+                questionButtons.forEach(button => button.classList.remove("active"));
+                
+                // Kích hoạt lại mục đang active trên desktop (nếu có)
+                // Hoặc kích hoạt mục đầu tiên
+                const activeId = display_Wrapper ? display_Wrapper.dataset.activeId : '0';
+                displayFAQDesktop(activeId || '0'); 
+            } else {
+                // Nếu resize VỀ mobile
+                // Xóa trạng thái active của desktop (để mobile tự đóng hết)
+                questionButtons.forEach(button => button.classList.remove("active"));
+            }
+        });
+
+        // *** BƯỚC 6: Kích hoạt trạng thái ban đầu khi tải trang ***
+        if (window.innerWidth >= 1024) {
+            // Mặc định hiển thị mục đầu tiên trên desktop
+            displayFAQDesktop(0);
+        }
+        // Không cần kích hoạt gì cho mobile, tất cả đều đóng
     }
 
     // Module 7: Image Loupe/Magnifier

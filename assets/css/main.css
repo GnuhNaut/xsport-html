@@ -488,7 +488,7 @@ input[type="radio"]:checked + .size-selector-label span {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border: 2px solid #d4af37;
+    border: 2px solid #14b8a6;
     animation: pulse-support 2.2s infinite;
 }
 
@@ -561,7 +561,7 @@ input[type="radio"]:checked + .size-selector-label span {
     100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(24,119,242,0); }
 }
 @keyframes pulse-support {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0.35); }
+    0% { transform: scale(1); box-shadow: 0 0 0 0 #14b8a68f; }
     70% { transform: scale(1.05); box-shadow: 0 0 0 16px rgba(212,175,55,0); }
     100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0); }
 }
@@ -570,3 +570,52 @@ input[type="radio"]:checked + .size-selector-label span {
 .btn-zalo { animation: pulse-blue 2.1s infinite; }
 .btn-facebook { animation: pulse-facebook 2.2s infinite; }
 /* ===== HẾT PHẦN CSS FAB ===== */
+/* ===== BỔ SUNG CHO FAQ MOBILE (Đã sửa lỗi) ===== */
+
+/* 1. Mặc định ẨN panel trả lời mobile trên DESKTOP */
+.faq-mobile-answer {
+    display: none; 
+    /* Các thuộc tính transition sẽ được đặt trong media query */
+}
+
+/* 2. Ẩn khối hiển thị chung (bên trái) trên MOBILE */
+@media (max-width: 1023px) {
+    .faq-content-display {
+        display: none;
+    }
+
+    /* 3. HIỂN THỊ panel mobile (nhưng ở trạng thái đóng) trên MOBILE */
+    .faq-mobile-answer {
+        display: block; /* Ghi đè display: none */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.6s ease-out;
+        padding: 0 1.5rem; /* 0 padding khi đóng */
+        margin: 0;
+        background-color: #000;
+        border-radius: 0 0 12px 12px;
+        /* Căn chỉnh viền */
+        border: 1px solid #444;
+        border-top: none; /* Vì viền trên đã có ở button */
+        color: #ccc;
+        margin-top: 0 !important;
+    }
+
+    /* 4. Khi button.active, MỞ panel trả lời (CHỈ TRÊN MOBILE) */
+    .faq-list-button.active + .faq-mobile-answer {
+        max-height: 500px; /* Đủ lớn để chứa nội dung */
+        opacity: 1;
+        padding: 1.5rem; /* Thêm padding khi mở */
+        margin-bottom: 1rem; /* Khoảng cách giữa các mục */
+        border-color: var(--brand-teal); /* Đổi viền sang màu teal */
+    }
+
+    /* 5. Điều chỉnh style của button khi active (CHỈ TRÊN MOBILE) */
+    .faq-list-button.active {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-bottom: 0 !important; /* Xóa margin của tailwind */
+        border-bottom-color: transparent; /* Ẩn viền dưới của button */
+    }
+}
