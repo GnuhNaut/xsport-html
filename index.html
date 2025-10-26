@@ -45,7 +45,7 @@
                 <a href="#product-section" class="text-gray-300 hover:text-brand-teal transition">Sản Phẩm</a>
                 <a href="#faq" class="text-gray-300 hover:text-brand-teal transition">FAQ</a>
             </div>
-            <a href="#order-form" class="cta-primary shimmer-btn">Đặt Hàng Ngay</a>
+            <a href="#order-form" class="hidden md:flex cta-primary shimmer-btn">Đặt Hàng Ngay</a>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-2xl"></i></button>
             </div>
@@ -169,12 +169,12 @@
         </section>
 
         <section 
-            class="h-screen flex flex-col md:flex-row justify-between items-center gap-4 lg:gap-12 p-6 md:p-12 transition-all duration-700 ease-in-out" 
+            class="md:h-screen flex flex-col md:flex-row justify-between items-center gap-4 lg:gap-12 p-6 md:p-12 transition-all duration-700 ease-in-out" 
             id="product-section" 
             
             style="color: white; --title-color: #eee; transition: background 0.7s ease-in-out;"
         >
-            <div class="h-auto md:h-full w-full md:w-auto flex flex-row md:flex-col justify-between md:justify-around items-center md:items-start">
+            <div class="h-auto md:h-full w-full md:w-auto md:flex md:flex-row md:flex-col justify-between md:justify-around items-center md:items-start">
                 
                 <div class="flex flex-col gap-4 reveal">
                     <p class="font-micho text-lg font-semibold tracking-wider">THÔNG SỐ KỸ THUẬT</p>
@@ -190,7 +190,7 @@
 
                 <div class="reveal">
                     <p class="font-micho text-base md:text-lg font-semibold tracking-wider mb-4">CHỌN PHIÊN BẢN</p>
-                    <div class="grid grid-cols-4 gap-3">
+                    <div class="grid grid-cols-4 gap-3 justify-items-center md:justify-items-start">
                         <button class="product-color-button" style="--btn-color: #A54DCF;" data-id="0"></button>
                         <button class="product-color-button" style="--btn-color: #F61F1F;" data-id="1"></button>
                         <button class="product-color-button" style="--btn-color: #93CEE6;" data-id="2"></button>
@@ -206,7 +206,7 @@
             <div class="h-full relative flex-1 flex flex-col justify-center items-center">
                 <h1 class="font-erica font-black absolute top-[5%] text-[4rem] md:text-[8rem] lg:text-[12rem] tracking-[1rem] lg:tracking-[2.125rem] z-0" id="main-title" style="color: var(--title-color);">WAVEX</h1>
                 <img class="w-[300px] md:w-auto md:max-w-[500px] z-10" id="main-image" src="https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png" alt="LEOPARD WAVEX PRO"/>
-                <a href="#order-form" class="cta-primary mt-6 md:mt-0" style="color: #000;">Mua Ngay</a>
+                <a href="#order-form" class="cta-primary mt-6 md:mt-0">Mua Ngay</a>
             </div>
 
             <div class="hidden md:h-full md:flex flex-col justify-around items-end text-right">
@@ -311,11 +311,11 @@
                         <input type="hidden" name="color_name" id="form-selected-color-name" value="Purple" required>
                     </div>
 
-                    <div id="form-message" class="text-lg font-semibold p-4 rounded-lg hidden"></div>
+                    <div id="form-message" class="text-lg font-semibold md:p-4 p-2 rounded-lg hidden"></div>
 
-                    <div class="pt-4 text-center">
+                    <div class="md:pt-4 pt-2 text-center">
                         <span class="block text-xl font-semibold text-gray-400 line-through">3.000.000 VNĐ</span>
-                        <span class="block text-3xl font-bold text-brand-teal mt-1">CHỈ CÒN: 2.150.000 VNĐ</span>
+                        <span class="block text-2xl md:text-3xl font-bold text-brand-teal mt-1">CHỈ CÒN: 2.150.000 VNĐ</span>
                     </div>
 
                     <button type="submit" id="form-submit-button" class="cta-primary w-full cta-large shimmer-btn">
