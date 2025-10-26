@@ -5,10 +5,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const mobileMenuButton = document.getElementById('mobile-menu-button'); 
         const mobileMenu = document.getElementById('mobile-menu'); 
         if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); }); 
+            // THAY ĐỔI: Chuyển từ toggle 'hidden' sang 'is-open'
+            mobileMenuButton.addEventListener('click', () => { 
+                mobileMenu.classList.toggle('is-open'); 
+            }); 
+            
+            // Khi click vào link, đóng menu mượt mà
             mobileMenu.addEventListener('click', (e) => {
                 if (e.target.tagName === 'A') {
-                    mobileMenu.classList.add('hidden');
+                    // THAY ĐỔI: Chuyển từ add 'hidden' sang remove 'is-open'
+                    mobileMenu.classList.remove('is-open');
                 }
             });
         }
@@ -87,16 +93,19 @@ document.addEventListener("DOMContentLoaded", () => {
     function initProductSwitcher() {
         const productSection = document.getElementById('product-section');
         if (!productSection) return;
+
+        /* --- THAY ĐỔI: Thêm lại 'background' nhưng dùng radial-gradient để pha màu đen --- */
         const data = [
-            { id: 0, title: "WAVEX - PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "linear-gradient(to left, #7d3a9e, #A54DCF, #7d3a9e)", "font-color": "white", "title-color": "#eee" },
-            { id: 1, title: "WAVEX - RED", image: "https://pickleplay.vn/cdn/shop/files/product_m_u6_b57ef00a-6e62-48f6-97d6-32363e17e5c0.png", background: "linear-gradient(to left, #c41818, #F61F1F, #c41818)", "font-color": "white", "title-color": "#eee" },
-            { id: 2, title: "WAVEX - LIGHT BLUE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "linear-gradient(to left, #6faac2, #93CEE6, #6faac2)", "font-color": "black", "title-color": "#555" },
-            { id: 3, title: "WAVEX - GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png", background: "linear-gradient(to left, #03832f, #04AA3D, #03832f)", "font-color": "white", "title-color": "#eee" },
-            { id: 4, title: "WAVEX - PINK", image: "https://pickleplay.vn/cdn/shop/files/product_m_u2_451c2715-43ec-4171-a66f-6912e6ff6dfc.png", background: "linear-gradient(to left, #d64c7b, #E37097, #d64c7b)", "font-color": "white", "title-color": "#eee" },
-            { id: 5, title: "WAVEX - ORANGE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "linear-gradient(to left, #d97600, #FF8A00, #d97600)", "font-color": "black", "title-color": "#555" },
-            { id: 6, title: "WAVEX - WHITE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u3_58c92a3a-1cc8-434b-b656-1f73937204cc.png", background: "linear-gradient(to left, #ccc, #FFFFFF, #ccc)", "font-color": "black", "title-color": "#555" },
-            { id: 7, title: "WAVEX - LIME GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "linear-gradient(to left, #7ca02c, #95BE35, #7ca02c)", "font-color": "black", "title-color": "#555" }
+            { id: 0, title: "WAVEX - PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #4a225d 0%, var(--brand-black) 75%)", "title-color": "#A54DCF" },
+            { id: 1, title: "WAVEX - RED", image: "https://pickleplay.vn/cdn/shop/files/product_m_u6_b57ef00a-6e62-48f6-97d6-32363e17e5c0.png", background: "radial-gradient(circle at 50% 50%, #7c1010 0%, var(--brand-black) 75%)", "title-color": "#F61F1F" },
+            { id: 2, title: "WAVEX - LIGHT BLUE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #3a6275 0%, var(--brand-black) 75%)", "title-color": "#93CEE6" },
+            { id: 3, title: "WAVEX - GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png", background: "radial-gradient(circle at 50% 50%, #02571f 0%, var(--brand-black) 75%)", "title-color": "#04AA3D" },
+            { id: 4, title: "WAVEX - PINK", image: "https://pickleplay.vn/cdn/shop/files/product_m_u2_451c2715-43ec-4171-a66f-6912e6ff6dfc.png", background: "radial-gradient(circle at 50% 50%, #7a3a50 0%, var(--brand-black) 75%)", "title-color": "#E37097" },
+            { id: 5, title: "WAVEX - ORANGE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #834700 0%, var(--brand-black) 75%)", "title-color": "#FF8A00" },
+            { id: 6, title: "WAVEX - WHITE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u3_58c92a3a-1cc8-434b-b656-1f73937204cc.png", background: "radial-gradient(circle at 50% 50%, #444444 0%, var(--brand-black) 75%)", "title-color": "#FFFFFF" },
+            { id: 7, title: "WAVEX - LIME GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #4c621a 0%, var(--brand-black) 75%)", "title-color": "#95BE35" }
         ];
+        
         let currentItem = 0;
         let isAnimating = false; 
         const mainImage = document.getElementById("main-image");
@@ -105,10 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function updateContent(id) {
             const newData = data[id];
+            
+            /* --- THAY ĐỔI: Thêm lại dòng này --- */
             productSection.style.background = newData.background;
-            productSection.style.color = newData["font-color"];
+            
             productSection.style.setProperty("--title-color", newData["title-color"]);
             mainTitle.style.color = newData["title-color"]; 
+            
             mainImage.src = newData.image;
             mainImage.alt = newData.title;
             currentItem = id;
@@ -148,13 +160,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 handleButtonClick(id);
             });
         });
-        updateContent(0);
+        updateContent(0); // Set background mặc định khi tải trang
         requestAnimationFrame(() => {
             animateIn();
         });
     }
 
-    // *** MỚI: Module 5: Gallery (Đã thêm lại) ***
+    // Module 5: Gallery
     function initGallery() {
         const galleryContainer = document.getElementById("expanding-gallery");
         if (!galleryContainer) return;
@@ -188,16 +200,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const allPanels = galleryContainer.querySelectorAll(".gallery-panel");
         
+        const isMobile = window.innerWidth <= 768;
+
         allPanels.forEach(panel => {
-            panel.addEventListener("mouseenter", () => {
-                allPanels.forEach(p => p.classList.remove('active'));
-                panel.classList.add('active');
-            });
+            if (isMobile) {
+                panel.addEventListener("click", () => {
+                    if (panel.classList.contains('active')) {
+                        panel.classList.remove('active');
+                    } else {
+                        allPanels.forEach(p => p.classList.remove('active'));
+                        panel.classList.add('active');
+                    }
+                });
+            } else {
+                panel.addEventListener("mouseenter", () => {
+                    allPanels.forEach(p => p.classList.remove('active'));
+                    panel.classList.add('active');
+                });
+            }
         });
 
-        galleryContainer.addEventListener("mouseleave", () => {
-            allPanels.forEach(p => p.classList.remove('active'));
-        });
+        if (!isMobile) {
+            galleryContainer.addEventListener("mouseleave", () => {
+                allPanels.forEach(p => p.classList.remove('active'));
+            });
+        }
     }
 
     // Module 6: FAQ
@@ -212,7 +239,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const questionButtons = document.querySelectorAll(".faq-list-button");
         const display_Wrapper = document.getElementById("faq-display-wrapper");
         const display_Number = document.getElementById("faq-display-number");
-        // const display_Image = document.getElementById("faq-display-image");
         const display_Question = document.getElementById("faq-display-question");
         const display_Answer = document.getElementById("faq-display-answer");
         function displayFAQ(id) {
@@ -222,7 +248,6 @@ document.addEventListener("DOMContentLoaded", () => {
             display_Wrapper.dataset.activeId = id; 
             setTimeout(() => {
                 display_Number.textContent = data.number;
-                // display_Image.src = data.image;
                 display_Question.textContent = data.question;
                 display_Answer.textContent = data.answer;
                 display_Wrapper.classList.remove('is-transitioning');
@@ -249,62 +274,94 @@ document.addEventListener("DOMContentLoaded", () => {
         const img = document.getElementById('loupe-image');
         if (!container || !img) return;
 
-        const loupe = document.createElement('div');
-        loupe.id = 'loupe-glass';
-        container.appendChild(loupe);
-        const zoom = 2.5; 
+        const isMobile = window.innerWidth <= 768;
 
-        function showLoupe() {
-            const imgWidth = img.clientWidth;
-            const imgHeight = img.clientHeight;
-            loupe.style.backgroundImage = `url(${img.src})`;
-            loupe.style.backgroundSize = `${imgWidth * zoom}px ${imgHeight * zoom}px`;
-            loupe.classList.add('visible');
+        if (isMobile) {
+            const lightbox = document.getElementById('image-lightbox');
+            const lightboxImg = document.getElementById('lightbox-image');
+            const closeBtn = document.getElementById('lightbox-close');
+
+            if (!lightbox || !lightboxImg || !closeBtn) return;
+
+            container.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('visible');
+                lightbox.classList.remove('hidden');
+            });
+            closeBtn.addEventListener('click', () => {
+                lightbox.classList.remove('visible');
+                lightbox.classList.add('hidden');
+            });
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('visible');
+                    lightbox.classList.add('hidden');
+                }
+            });
+
+        } else {
+            const loupe = document.createElement('div');
+            loupe.id = 'loupe-glass';
+            container.appendChild(loupe);
+            const zoom = 2.5; 
+
+            function showLoupe() {
+                const imgWidth = img.clientWidth;
+                const imgHeight = img.clientHeight;
+                loupe.style.backgroundImage = `url(${img.src})`;
+                loupe.style.backgroundSize = `${imgWidth * zoom}px ${imgHeight * zoom}px`;
+                loupe.classList.add('visible');
+            }
+
+            function hideLoupe() {
+                loupe.classList.remove('visible');
+            }
+
+            function moveLoupe(e) {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const loupeWidth = loupe.offsetWidth;
+                const loupeHeight = loupe.offsetHeight;
+                
+                loupe.style.left = `${x - loupeWidth / 2}px`;
+                loupe.style.top = `${y - loupeHeight / 2}px`;
+
+                const xRatio = x / img.clientWidth;
+                const yRatio = y / img.clientHeight;
+                const bgWidth = img.clientWidth * zoom;
+                const bgHeight = img.clientHeight * zoom;
+                const bgX = -((bgWidth * xRatio) - (loupeWidth / 2));
+                const bgY = -((bgHeight * yRatio) - (loupeHeight / 2));
+
+                loupe.style.backgroundPosition = `${bgX}px ${bgY}px`;
+            }
+
+            container.addEventListener('mouseenter', showLoupe);
+            container.addEventListener('mouseleave', hideLoupe);
+            container.addEventListener('mousemove', moveLoupe);
         }
-
-        function hideLoupe() {
-            loupe.classList.remove('visible');
-        }
-
-        function moveLoupe(e) {
-            const rect = container.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const loupeWidth = loupe.offsetWidth;
-            const loupeHeight = loupe.offsetHeight;
-            
-            loupe.style.left = `${x - loupeWidth / 2}px`;
-            loupe.style.top = `${y - loupeHeight / 2}px`;
-
-            const xRatio = x / img.clientWidth;
-            const yRatio = y / img.clientHeight;
-            const bgWidth = img.clientWidth * zoom;
-            const bgHeight = img.clientHeight * zoom;
-            const bgX = -((bgWidth * xRatio) - (loupeWidth / 2));
-            const bgY = -((bgHeight * yRatio) - (loupeHeight / 2));
-
-            loupe.style.backgroundPosition = `${bgX}px ${bgY}px`;
-        }
-
-        container.addEventListener('mouseenter', showLoupe);
-        container.addEventListener('mouseleave', hideLoupe);
-        container.addEventListener('mousemove', moveLoupe);
     }
 
     // Module 8: Form Color Picker
     function initFormColorPicker() {
         const formColorButtons = document.querySelectorAll("#order-form .product-color-button");
-        const hiddenInput = document.getElementById("form-selected-color");
+        const hiddenInputId = document.getElementById("form-selected-color");
+        const hiddenInputName = document.getElementById("form-selected-color-name");
         
-        if (!formColorButtons.length || !hiddenInput) return;
+        if (!formColorButtons.length || !hiddenInputId || !hiddenInputName) return;
 
-        formColorButtons[0].classList.add('active'); 
+        formColorButtons[0].classList.add('active');
 
         formColorButtons.forEach(button => {
             button.addEventListener("click", (e) => {
                 e.preventDefault(); 
                 const selectedId = button.dataset.id;
-                hiddenInput.value = selectedId;
+                const selectedName = button.dataset.name;
+
+                hiddenInputId.value = selectedId;
+                hiddenInputName.value = selectedName;
+
                 formColorButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
             });
@@ -329,21 +386,89 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Module 10: XỬ LÝ SUBMIT FORM
+    function initFormSubmit() {
+        const form = document.getElementById("order-form-element");
+        const submitButton = document.getElementById("form-submit-button");
+        const messageDiv = document.getElementById("form-message");
+        const apiUrl = "https://api.xuan.media/submit-form";
+
+        if (!form || !submitButton || !messageDiv) return;
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Đang xử lý...';
+            
+            messageDiv.classList.add("hidden");
+            messageDiv.classList.remove("success", "error");
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    messageDiv.textContent = result.message || "Đặt hàng thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.";
+                    messageDiv.classList.add("success");
+                    messageDiv.classList.remove("hidden");
+                    form.reset(); 
+                    
+                    document.getElementById('size-14mm').checked = true;
+                    document.querySelector('label[for="size-14mm"]').classList.add('active');
+                    document.querySelector('label[for="size-16mm"]').classList.remove('active');
+                    
+                    document.querySelectorAll("#order-form .product-color-button").forEach((btn, idx) => {
+                        btn.classList.toggle('active', idx === 0);
+                    });
+                    document.getElementById("form-selected-color").value = "0";
+                    document.getElementById("form-selected-color-name").value = "Purple";
+
+                } else {
+                    const errorData = await response.json().catch(() => ({}));
+                    messageDiv.textContent = `Lỗi: ${errorData.message || 'Không thể gửi đơn hàng. Vui lòng thử lại.'}`;
+                    messageDiv.classList.add("error");
+                    messageDiv.classList.remove("hidden");
+                }
+
+            } catch (error) {
+                console.error("Lỗi khi gửi form:", error);
+                messageDiv.textContent = "Lỗi kết nối. Vui lòng kiểm tra mạng và thử lại.";
+                messageDiv.classList.add("error");
+                messageDiv.classList.remove("hidden");
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<i class="fas fa-shopping-cart mr-2"></i> Đặt Hàng Ngay';
+            }
+        });
+    }
+
 
     // --- BỘ ĐIỀU KHIỂN CHẠY ---
     initMobileMenu();
     initScrollObserver();
     initHeroSlider();
     initProductSwitcher();
-    initGallery(); // *** ĐÃ THÊM LẠI ***
+    initGallery();
     initFAQ();
     initImageLoupe();
     initFormColorPicker(); 
     initFormSizePicker(); 
+    initFormSubmit();
 
 });
 
-// Floating Action Button (FAB) interactions and popups
+/* ===== PHẦN FAB (FLOATING ACTION BUTTON) ===== */
+/* THAY ĐỔI: Khôi phục 100% code JS gốc của bạn cho FAB */
 (function() {
     function setToggleIcon(open) {
         const icon = document.getElementById('toggle-icon');
@@ -351,6 +476,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (open) {
             icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6L18 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
         } else {
+            // Lưu ý: Dòng code này sẽ không hoạt động như ý muốn vì .innerHTML
+            // không phải là cách để thay đổi src của thẻ <img>,
+            // nhưng tôi khôi phục nó đúng theo file gốc của bạn.
             icon.innerHTML = '<svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"/></svg>';
         }
     }
@@ -384,5 +512,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 })();
-
-
+/* ===== HẾT PHẦN JS FAB ===== */

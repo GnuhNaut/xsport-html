@@ -6,7 +6,8 @@
     <title>LEOPARD WAVEX PRO ULTIMATE - Vợt Pickleball Công Thủ Toàn Diện</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Erica+One&family=Michroma&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="assets/css/main.css">
 
@@ -23,8 +24,8 @@
                     },
                     fontFamily: {
                         'sans': ['Montserrat', 'sans-serif'],
-                        'micho': ['Michroma', 'sans-serif'],
-                        'erica': ['Erica One', 'sans-serif']
+                        'micho': ['Montserrat', 'sans-serif'],
+                        'erica': ['Montserrat', 'sans-serif']
                     }
                 }
             }
@@ -41,23 +42,16 @@
             </a>
             <div class="hidden md:flex space-x-6 items-center font-semibold">
                 <a href="#about" class="text-gray-300 hover:text-brand-teal transition">Về WaveX</a>
-                <!-- <a href="#nfc" class="text-gray-300 hover:text-brand-teal transition">Tính Năng</a>
-                <a href="#tech" class="text-gray-300 hover:text-brand-teal transition">Công Nghệ</a>
-                <a href="#gallery" class="text-gray-300 hover:text-brand-teal transition">Bộ Sưu Tập</a> -->
                 <a href="#product-section" class="text-gray-300 hover:text-brand-teal transition">Sản Phẩm</a>
                 <a href="#faq" class="text-gray-300 hover:text-brand-teal transition">FAQ</a>
-                <!-- <a href="#contact" class="cta-secondary">Liên Hệ Tư Vấn</a> -->
             </div>
             <a href="#order-form" class="cta-primary shimmer-btn">Đặt Hàng Ngay</a>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-2xl"></i></button>
             </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-black/90 pb-3">
+        <div id="mobile-menu" class="md:hidden bg-black/90 pb-3">
              <a href="#about" class="block px-6 py-3 text-gray-300 hover:bg-brand-navy-light">Về WaveX</a>
-             <!-- <a href="#nfc" class="block px-6 py-3 text-gray-300 hover:bg-brand-navy-light">Tính Năng</a>
-            <a href="#tech" class="block px-6 py-3 text-gray-300 hover:bg-brand-navy-light">Công Nghệ</a>
-            <a href="#gallery" class="block px-6 py-3 text-gray-300 hover:bg-brand-navy-light">Bộ Sưu Tập</a> -->
             <a href="#product-section" class="block px-6 py-3 text-gray-300 hover:bg-brand-navy-light">Sản Phẩm</a>
             <a href="#faq" class="block px-6 py-3 text-gray-300 hover:bg-brand-navy-light">FAQ</a>
             <a href="#contact" class="block px-6 py-3 text-gray-300 hover:bg-brand-navy-light">Liên Hệ Tư Vấn</a>
@@ -102,9 +96,12 @@
                     
                     <div class="reveal reveal-delay-1">
                         <div id="loupe-container" class="relative rounded-3xl overflow-hidden pt-[100%] shadow-2xl cursor-crosshair">
-                            <img id="loupe-image" src="https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png" alt="Leopard WaveX Pro" class="absolute top-0 left-0 w-full h-full object-cover">
+                            <img id="loupe-image" src="https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png" alt="Leopard WaveX Pro" class="absolute top-0 left-0 w-full h-full object-contain">
                             <div class="absolute top-6 right-6 w-12 h-12 rounded-full bg-black/70 backdrop-blur-sm flex items-center justify-center text-white text-lg cursor-pointer transition-all duration-300 hover:bg-brand-teal hover:text-black">
                                 <i class="fas fa-magnifying-glass-plus"></i>
+                            </div>
+                            <div id="mobile-zoom-prompt" class="absolute bottom-4 left-4 right-4 p-2 bg-black/70 backdrop-blur-sm text-white text-center text-sm rounded-lg">
+                                <i class="fas fa-hand-pointer mr-1"></i> Chạm vào ảnh để phóng to
                             </div>
                         </div>
                     </div>
@@ -161,7 +158,10 @@
         <section id="gallery" class="py-20 bg-black">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="font-micho text-2xl md:text-3xl lg:text-4xl font-semibold text-white uppercase tracking-wider text-shadow-lg shadow-brand-teal reveal">BỘ SƯU TẬP 8 MÀU SẮC</h2>
-                <p class="text-lg text-gray-400 max-w-2xl mx-auto mt-4 reveal">Di chuột qua để khám phá 8 phiên bản màu sắc độc đáo của Leopard WaveX.</p>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto mt-4 reveal">
+                    <span class="hidden md:inline">Di chuột qua để khám phá 8 phiên bản màu sắc độc đáo.</span>
+                    <span class="md:hidden">Chạm để khám phá 8 phiên bản màu sắc độc đáo.</span>
+                </p>
             </div>
 
             <div class="expanding-gallery-container reveal" id="expanding-gallery">
@@ -171,7 +171,8 @@
         <section 
             class="h-screen flex flex-col md:flex-row justify-between items-center gap-4 lg:gap-12 p-6 md:p-12 transition-all duration-700 ease-in-out" 
             id="product-section" 
-            style="color: white; background: linear-gradient(to left, #1a1a1a, #A54DCF, #1a1a1a); --title-color: #eee;"
+            
+            style="color: white; --title-color: #eee; transition: background 0.7s ease-in-out;"
         >
             <div class="h-auto md:h-full w-full md:w-auto flex flex-row md:flex-col justify-between md:justify-around items-center md:items-start">
                 
@@ -203,7 +204,7 @@
             </div>
 
             <div class="h-full relative flex-1 flex flex-col justify-center items-center">
-                <h1 class="font-erica absolute top-[5%] text-[4rem] md:text-[8rem] lg:text-[12rem] tracking-[1rem] lg:tracking-[2.125rem] z-0" id="main-title" style="color: var(--title-color);">WAVEX</h1>
+                <h1 class="font-erica font-black absolute top-[5%] text-[4rem] md:text-[8rem] lg:text-[12rem] tracking-[1rem] lg:tracking-[2.125rem] z-0" id="main-title" style="color: var(--title-color);">WAVEX</h1>
                 <img class="w-[300px] md:w-auto md:max-w-[500px] z-10" id="main-image" src="https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png" alt="LEOPARD WAVEX PRO"/>
                 <a href="#order-form" class="cta-primary mt-6 md:mt-0" style="color: #000;">Mua Ngay</a>
             </div>
@@ -223,9 +224,6 @@
                         <div class="sticky top-32">
                             <div id="faq-display-wrapper" data-active-id="0">
                                 <span class="font-micho text-5xl font-semibold text-gray-700" id="faq-display-number">/01</span>
-                                <!-- <div class="my-6 rounded-lg overflow-hidden shadow-lg">
-                                    <img id="faq-display-image" src="https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png" alt="FAQ Image" class="transition-all duration-500 ease-in-out">
-                                </div> -->
                                 <h3 class="font-micho text-2xl text-white font-semibold" id="faq-display-question">Vợt này phù hợp với người chơi nào?</h3>
                                 <p class="text-gray-400 text-lg mt-3" id="faq-display-answer">Leopard Wave X là lựa chọn hoàn hảo cho người chơi Pickleball tìm kiếm một cây vợt công thủ toàn diện...</p>
                             </div>
@@ -273,12 +271,12 @@
                     Sở hữu ngay Leopard Wave X - người bạn đồng hành đáng tin cậy cho mọi tay vợt.
                 </p>
                 
-                <form class="mt-12 space-y-6 md:w-2/3 lg:w-1/2 mx-auto reveal">
+                <form id="order-form-element" class="mt-12 space-y-6 md:w-2/3 lg:w-1/2 mx-auto reveal">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <input type="text" placeholder="Tên của bạn *" required class="w-full p-4 bg-brand-navy-light border border-gray-700 rounded-lg text-white font-sans transition-all duration-300 text-base placeholder-gray-500 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal">
-                        <input type="tel" placeholder="Số điện thoại *" required class="w-full p-4 bg-brand-navy-light border border-gray-700 rounded-lg text-white font-sans transition-all duration-300 text-base placeholder-gray-500 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal">
+                        <input type="text" name="customer_name" placeholder="Tên của bạn *" required class="w-full p-4 bg-brand-navy-light border border-gray-700 rounded-lg text-white font-sans transition-all duration-300 text-base placeholder-gray-500 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal">
+                        <input type="tel" name="customer_phone" placeholder="Số điện thoại *" required class="w-full p-4 bg-brand-navy-light border border-gray-700 rounded-lg text-white font-sans transition-all duration-300 text-base placeholder-gray-500 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal">
                     </div>
-                    <textarea placeholder="Địa chỉ nhận hàng *" required class="w-full p-4 bg-brand-navy-light border border-gray-700 rounded-lg text-white font-sans transition-all duration-300 text-base placeholder-gray-500 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal resize-vertical min-h-[100px]" rows="3"></textarea>
+                    <textarea name="customer_address" placeholder="Địa chỉ nhận hàng *" required class="w-full p-4 bg-brand-navy-light border border-gray-700 rounded-lg text-white font-sans transition-all duration-300 text-base placeholder-gray-500 focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal resize-vertical min-h-[100px]" rows="3"></textarea>
                     
                     <div>
                         <label class="block text-left text-lg text-gray-300 mb-4">Chọn độ dày *</label>
@@ -309,15 +307,18 @@
                             <button type="button" class="product-color-button" style="--btn-color: #FFFFFF;" data-id="6" data-name="White"></button>
                             <button type="button" class="product-color-button" style="--btn-color: #95BE35;" data-id="7" data-name="Lime Green"></button>
                         </div>
-                        <input type="hidden" name="selected_color" id="form-selected-color" value="0" required>
+                        <input type="hidden" name="color_id" id="form-selected-color" value="0" required>
+                        <input type="hidden" name="color_name" id="form-selected-color-name" value="Purple" required>
                     </div>
+
+                    <div id="form-message" class="text-lg font-semibold p-4 rounded-lg hidden"></div>
 
                     <div class="pt-4 text-center">
                         <span class="block text-xl font-semibold text-gray-400 line-through">3.000.000 VNĐ</span>
                         <span class="block text-3xl font-bold text-brand-teal mt-1">CHỈ CÒN: 2.150.000 VNĐ</span>
                     </div>
 
-                    <button type="submit" class="cta-primary w-full cta-large shimmer-btn">
+                    <button type="submit" id="form-submit-button" class="cta-primary w-full cta-large shimmer-btn">
                         <i class="fas fa-shopping-cart mr-2"></i>
                         Đặt Hàng Ngay
                     </button>
@@ -344,6 +345,7 @@
             <p class="mt-2 text-sm">Thiết kế và Phát triển bởi <span class="text-brand-teal">XSPORT Developer Team</span>.</p>
         </div>
     </footer>
+
     <div class="floating-container">
         <div class="floating-options">
             <a class="btn-hotline" href="tel:0961266266" title="Gọi Hotline">
@@ -363,6 +365,11 @@
             <img id="toggle-icon" src="./assets/icons/support.svg" alt="Support" width="36" height="36">
         </div>
     </div>
+    <div id="image-lightbox" class="fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4 hidden">
+        <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl">&times;</button>
+        <img id="lightbox-image" src="" alt="Ảnh phóng to" class="max-w-full max-h-full object-contain">
+    </div>
+
     <script src="assets/js/main.js" defer></script>
 
 </body>
