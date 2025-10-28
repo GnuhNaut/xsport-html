@@ -638,8 +638,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 10. RESIZE VÀ KHỞI TẠO
         addEventListener("resize", () => center(current));
-        toggleUI(0);
-        center(0); // Center card đầu tiên khi tải trang
+        if(!isMobile()) {
+            toggleUI(0);
+            center(0); // Center card đầu tiên khi tải trang
+        }
     }
 
     initKocSlider_v5();
