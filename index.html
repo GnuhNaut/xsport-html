@@ -138,9 +138,120 @@
                         </a>
                     </div>
                 </div>
-            </div>
-        </section>
+            </div><section id="koc-review-slider" class="bg-brand-navy-light py-20 overflow-hidden">
 
+                <div class="head container mx-auto px-6">
+                    <div class="reveal">
+                        <span class="text-brand-teal font-semibold uppercase tracking-wider uppercase">/TRẢI NGHIỆM THỰC TẾ</span>
+                        <h2 class="font-micho text-2xl md:text-3xl lg:text-4xl font-semibold text-white uppercase tracking-wider text-shadow-lg shadow-brand-teal mt-3">
+                            CỘNG ĐỒNG NÓI GÌ VỀ WAVEX
+                        </h2>
+                    </div>
+                    <div class="controls reveal">
+                        <button id="koc-prev" class="nav-btn" aria-label="Prev">‹</button>
+                        <button id="koc-next" class="nav-btn" aria-label="Next">›</button>
+                    </div>
+                </div>
+            
+                <div class="slider">
+                    <div class="track" id="koc-track">
+            
+                        <article class="project-card reveal" active>
+                            <img class="project-card__bg" src="./assets/imgs/products/red.webp" alt="Review vợt XSPORT màu đỏ">
+                            <div class="project-card__content">
+                                <img class="project-card__thumb" src="https://via.placeholder.com/300x500.png?text=KOC+1" alt="PickDee">
+                                <div>
+                                    <h3 class="project-card__title">@pickdee268</h3>
+                                    <p class="project-card__desc">
+                                        "Mặt vợt T700 cho độ bám (spin) cực tốt. Cảm giác bóng rất rõ ràng. Đây là cây vợt hoàn hảo cho ai tìm kiếm sự cân bằng giữa sức mạnh và kiểm soát."
+                                    </p>
+                                    <button class="project-card__btn koc-modal-trigger"
+                                            data-modal-content-id="tiktok-video-1">
+                                        Xem Video TikTok
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+            
+                        <article class="project-card reveal">
+                            <img class="project-card__bg" src="./assets/imgs/products/pink.webp" alt="Review vợt XSPORT màu hồng">
+                            <div class="project-card__content">
+                                <img class="project-card__thumb" src="https://via.placeholder.com/300x500.png?text=KOC+2" alt="Tiến Ơi Cố Lên">
+                                <div>
+                                    <h3 class="project-card__title">@tienoicolen</h3>
+                                    <p class="project-card__desc">
+                                        "Đập hộp cây vợt này quá đã! Từ bao da, seal vợt tới thiết kế đều siêu xịn. Màu trắng và hồng này ở ngoài đẹp xuất sắc, chị em nên chốt ngay!"
+                                    </p>
+                                    <button class="project-card__btn koc-modal-trigger"
+                                            data-modal-content-id="tiktok-video-2">
+                                        Xem Video TikTok
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+            
+                        <article class="project-card reveal">
+                            <img class="project-card__bg" src="./assets/imgs/products/green.webp" alt="Review vợt XSPORT màu xanh lá">
+                            <div class="project-card__content">
+                                <img class="project-card__thumb" src="https://via.placeholder.com/300x500.png?text=KOC+3" alt="DT Sports">
+                                <div>
+                                    <h3 class="project-card__title">@dt.sports.tq</h3>
+                                    <p class="project-card__desc">
+                                        "Công nghệ lõi Gen 4 và Carbon T700 cao cấp. Cảm giác đánh rất êm tay, giảm rung tốt. Anh em nào muốn lên vợt xịn thì đây là lựa chọn số 1."
+                                    </p>
+                                    <button class="project-card__btn koc-modal-trigger"
+                                            data-modal-content-id="tiktok-video-3">
+                                        Xem Video TikTok
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <article class="project-card reveal">
+                            <img class="project-card__bg" src="./assets/imgs/products/orange.webp" alt="Review vợt XSPORT màu cam">
+                            <div class="project-card__content">
+                                <img class="project-card__thumb" src="https://via.placeholder.com/300x500.png?text=KOC+4" alt="Pickleball MT">
+                                <div>
+                                    <h3 class="project-card__title">@pickleball.mt</h3>
+                                    <p class="project-card__desc">
+                                        "Bản 16mm cho cảm giác đầm tay và kiểm soát bóng cực tốt. Điểm ngọt (sweet spot) lớn, dễ làm quen, rất phù hợp cho cả người mới và bán chuyên."
+                                    </p>
+                                    <button class="project-card__btn koc-modal-trigger"
+                                            data-modal-content-id="tiktok-video-4">
+                                        Xem Video TikTok
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+            
+                    </div>
+                </div>
+            
+                <div class="dots" id="koc-dots"></div>
+            
+                <div id="koc-modal-templates" style="display: none;">
+                    <template id="tiktok-video-1">
+                        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@pickdee268/video/7550212561778543890" data-video-id="7550212561778543890" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@pickdee268" href="https://www.tiktok.com/@pickdee268?refer=embed">@pickdee268</a> Review LeoPard WAVE X Ace tham khảo nhé <a title="pickdee" target="_blank" href="https://www.tiktok.com/tag/pickdee?refer=embed">#Pickdee</a> <a title="pickleball" target="_blank" href="https://www.tiktok.com/tag/pickleball?refer=embed">#Pickleball</a> <a title="leopardwavex" target="_blank" href="https://www.tiktok.com/tag/leopardwavex?refer=embed">#leopardwavex</a> <a target="_blank" title="♬ nhạc nền  - PickDeeeee" href="https://www.tiktok.com/music/nhạc-nền-PickDeeeee-7550212807082396417?refer=embed">♬ nhạc nền  - PickDeeeee</a> </section> </blockquote> 
+                    </template>
+                    <template id="tiktok-video-2">
+                        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@tienoicolen/video/7553985040061910280" data-video-id="7553985040061910280" style="max-width: 450px;min-width: 300px; margin: 0;"> <section> <a target="_blank" title="@tienoicolen" href="https://www.tiktok.com/@tienoicolen?refer=embed">@tienoicolen</a> Đập hộp vợt Leopard Wave X <a title="tienoicolen" target="_blank" href="https://www.tiktok.com/tag/tienoicolen?refer=embed">#tienoicolen</a> <a title="pickleball" target="_blank" href="https://www.tiktok.com/tag/pickleball?refer=embed">#pickleball</a> <a title="leopardwavex" target="_blank" href="https://www.tiktok.com/tag/leopardwavex?refer=embed">#leopardwavex</a> <a target="_blank" title="♬ nhạc nền - Tiến Ơi Cố Lên - Tiến Ơi Cố Lên" href="https://www.tiktok.com/music/nhạc-nền-Tiến-Ơi-Cố-Lên-7553985117904079624?refer=embed">♬ nhạc nền - Tiến Ơi Cố Lên - Tiến Ơi Cố Lên</a> </section> </blockquote>
+                    </template>
+                    <template id="tiktok-video-3">
+                        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@dt.sports.tq/video/7550503464116309269" data-video-id="7550503464116309269" style="max-width: 450px;min-width: 300px; margin: 0;"> <section> <a target="_blank" title="@dt.sports.tq" href="https://www.tiktok.com/@dt.sports.tq?refer=embed">@dt.sports.tq</a> Vợt Leopard Wave X công nghệ lõi Gen 4 <a title="pickleball" target="_blank" href="https://www.tiktok.com/tag/pickleball?refer=embed">#pickleball</a> <a title="leopardwavex" target="_blank" href="https://www.tiktok.com/tag/leopardwavex?refer=embed">#leopardwavex</a> <a target="_blank" title="♬ nhạc nền - DT Sports TQ - DT Sports TQ" href="https://www.tiktok.com/music/nhạc-nền-DT-Sports-TQ-7550503524141665045?refer=embed">♬ nhạc nền - DT Sports TQ - DT Sports TQ</a> </section> </blockquote>
+                    </template>
+                    <template id="tiktok-video-4">
+                        <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@pickleball.mt/video/7558397598759914759" data-video-id="7558397598759914759" style="max-width: 450px;min-width: 300px; margin: 0;"> <section> <a target="_blank" title="@pickleball.mt" href="https://www.tiktok.com/@pickleball.mt?refer=embed">@pickleball.mt</a> Bản 14mm này lại dễ chơi <a title="manhtuyen" target="_blank" href="https://www.tiktok.com/tag/manhtuyen?refer=embed">#manhtuyen</a> <a title="pickleball" target="_blank" href="https://www.tiktok.com/tag/pickleball?refer=embed">#pickleball</a> <a title="leopardwavex" target="_blank" href="https://www.tiktok.com/tag/leopardwavex?refer=embed">#leopardwavex</a> <a title="votpickleball" target="_blank" href="https://www.tiktok.com/tag/votpickleball?refer=embed">#votpickleball</a> <a target="_blank" title="♬ Drink Shop - ALEKSANDAR KIPROV" href="https://www.tiktok.com/music/Drink-Shop-7274049030760925238?refer=embed">♬ Drink Shop - ALEKSANDAR KIPROV</a> </section> </blockquote>
+                    </template>
+                </div>
+            </section>
+            
+            <!-- <div id="koc-video-modal" class="hidden">
+                <div class="koc-modal-content">
+                    <button id="modal-close-btn" class="fas fa-times"></button>
+                    <div id="modal-video-player"></div>
+                </div>
+            </div> -->
+        
         <section id="gallery" class="py-20 bg-black">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="font-micho text-2xl md:text-3xl lg:text-4xl font-semibold text-white uppercase tracking-wider text-shadow-lg shadow-brand-teal reveal">BỘ SƯU TẬP ĐA MÀU SẮC</h2>
@@ -374,8 +485,14 @@
         <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl">&times;</button>
         <img id="lightbox-image" src="" alt="Ảnh phóng to" class="max-w-full max-h-full object-contain">
     </div>
-
+    
+    <div id="koc-video-modal" class="hidden">
+        <div class="koc-modal-content">
+            <button id="modal-close-btn" class="fas fa-times"></button>
+            <div id="modal-video-player"></div>
+        </div>
+    </div>
     <script src="assets/js/main.js" defer></script>
-
+    <script async src="https://www.tiktok.com/embed.js"></script>
 </body>
 </html>

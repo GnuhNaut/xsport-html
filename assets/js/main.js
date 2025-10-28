@@ -540,8 +540,199 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+// ============ DÁN 2 HÀM NÀY VÀO TRONG SỰ KIỆN DOMContentLoaded ============
+
+// ============ MODULE 11: KOC/KOL REVIEW SLIDER (v5) ============
+function initKocSlider_v5() {
+    const track = document.getElementById("koc-track");
+    if (!track) return;
+    
+    const wrap = track.parentElement;
+    const cards = Array.from(track.children);
+    const prev = document.getElementById("koc-prev");
+    const next = document.getElementById("koc-next");
+    const dotsBox = document.getElementById("koc-dots");
+
+    const isMobile = () => matchMedia("(max-width:767px)").matches;
+
+    // 1. TẠO DOTS
+    cards.forEach((_, i) => {
+        const dot = document.createElement("span");
+        dot.className = "dot";
+        dot.onclick = (e) => {
+            e.stopPropagation();
+            activate(i, true);
+        };
+        dotsBox.appendChild(dot);
+    });
+    const dots = Array.from(dotsBox.children);
+
+    let current = 0;
+
+    // 2. HÀM CENTER CARD
+    function center(i) {
+        const card = cards[i];
+        if (!card) return;
+        const axis = isMobile() ? "top" : "left";
+        const size = isMobile() ? "clientHeight" : "clientWidth";
+        const start = isMobile() ? card.offsetTop : card.offsetLeft;
+        
+        wrap.scrollTo({
+            [axis]: start - (wrap[size] / 2 - card[size] / 2),
+            behavior: "smooth"
+        });
+    }
+
+    // 3. HÀM CẬP NHẬT GIAO DIỆN
+    function toggleUI(i) {
+        cards.forEach((c, k) => c.toggleAttribute("active", k === i));
+        dots.forEach((d, k) => d.classList.toggle("active", k === i));
+        if(prev) prev.disabled = i === 0;
+        if(next) next.disabled = i === cards.length - 1;
+    }
+
+    // 4. HÀM KÍCH HOẠT CHÍNH
+    function activate(i, scroll) {
+        if (i < 0 || i >= cards.length) return;
+        if (i === current) return;
+        current = i;
+        toggleUI(i);
+        if (scroll) center(i);
+    }
+
+    // 5. GÁN SỰ KIỆN CHO NÚT PREV/NEXT
+    function go(step) {
+        activate(Math.min(Math.max(current + step, 0), cards.length - 1), true);
+    }
+    if(prev) prev.onclick = () => go(-1);
+    if(next) next.onclick = () => go(1);
+
+    // 6. GÁN SỰ KIỆN BÀN PHÍM
+    addEventListener(
+        "keydown",
+        (e) => {
+            // Chỉ chạy nếu slider đang được focus
+            if (document.activeElement.closest('#koc-review-slider')) {
+                if (["ArrowRight", "ArrowDown"].includes(e.key)) go(1);
+                if (["ArrowLeft", "ArrowUp"].includes(e.key)) go(-1);
+            }
+        },
+        { passive: true }
+    );
+
+    // 7. GÁN SỰ KIỆN CHO TỪNG CARD
+    cards.forEach((card, i) => {
+        card.addEventListener(
+            "mouseenter",
+            () => matchMedia("(hover:hover)").matches && activate(i, true)
+        );
+        card.addEventListener("click", (e) => {
+             if (!e.target.closest('.koc-modal-trigger')) {
+                activate(i, true);
+             }
+        });
+    });
+
+    // 8. GÁN SỰ KIỆN VUỐT (SWIPE)
+    let sx = 0, sy = 0;
+    track.addEventListener(
+        "touchstart",
+        (e) => {
+            sx = e.touches[0].clientX;
+            sy = e.touches[0].clientY;
+        },
+        { passive: true }
+    );
+    track.addEventListener(
+        "touchend",
+        (e) => {
+            const dx = e.changedTouches[0].clientX - sx;
+            const dy = e.changedTouches[0].clientY - sy;
+            if (isMobile() ? Math.abs(dy) > 60 : Math.abs(dx) > 60)
+                go((isMobile() ? dy : dx) > 0 ? -1 : 1);
+        },
+        { passive: true }
+    );
+    
+    // 9. ẨN DOTS TRÊN MOBILE
+    if (window.matchMedia("(max-width:767px)").matches) dotsBox.hidden = true;
+
+    // 10. RESIZE VÀ KHỞI TẠO
+    addEventListener("resize", () => center(current));
+    toggleUI(0);
+    center(0); // Center card đầu tiên khi tải trang
+}
 
 
+// ============ MODULE 12: KOC/KOL VIDEO MODAL (v5 - SỬA LỖI TIKTOK) ============
+function initKocVideoModal_v5() {
+    const videoTriggers = document.querySelectorAll('#koc-review-slider .koc-modal-trigger');
+    const modal = document.getElementById('koc-video-modal');
+    const closeBtn = document.getElementById('modal-close-btn');
+    const playerContainer = document.getElementById('modal-video-player');
+
+    if (!modal || !closeBtn || !playerContainer || videoTriggers.length === 0) {
+        return; 
+    }
+    
+    // Hàm gọi xử lý TikTok, có lặp lại để chờ script load
+    const processTikTok = () => {
+        // KIỂM TRA XEM SCRIPT TIKTOK ĐÃ TẢI XONG CHƯA
+        if (typeof window.tiktok !== 'undefined' && typeof window.tiktok.process === 'function') {
+            // Script đã tải, gọi hàm xử lý
+            window.tiktok.process(); 
+        } else {
+            // Script chưa tải, thử lại sau 100ms
+            setTimeout(processTikTok, 100);
+        }
+    };
+
+    function closeModal() {
+        modal.classList.remove('is-open');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            playerContainer.innerHTML = ''; // Xóa video để dừng phát
+        }, 300);
+    }
+
+    videoTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation(); // Ngăn click vào card
+            
+            const templateId = trigger.dataset.modalContentId;
+            if (!templateId) return;
+
+            const template = document.getElementById(templateId);
+            if (!template) return;
+
+            playerContainer.innerHTML = ''; // Xóa video cũ
+            
+            // Sao chép nội dung (blockquote) từ template vào modal
+            const content = template.content.cloneNode(true);
+            playerContainer.appendChild(content);
+
+            // ***** ĐÂY LÀ PHẦN SỬA LỖI *****
+            // "Ra lệnh" cho script TikTok chạy lại
+            processTikTok(); 
+
+            // Hiển thị modal
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.add('is-open');
+            }, 10);
+        });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        // Chỉ đóng khi click vào nền mờ (chính là #koc-video-modal)
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+}
+initKocSlider_v5();
+initKocVideoModal_v5();
     // --- BỘ ĐIỀU KHIỂN CHẠY ---
     initMobileMenu();
     initScrollObserver();
