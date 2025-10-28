@@ -38,10 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const heroSection = document.getElementById('hero');
         if (!heroSection) return;
         const slides = [
-            { image: 'https://pickleplay.vn/cdn/shop/files/z7037608699618_1d61e51545892718911f8d9e81ac5b81.jpg?v=1758519364&width=1600', title: 'CÔNG THỦ TOÀN DIỆN', subtitle: 'LỰA CHỌN LÝ TƯỞNG', paragraph: 'Mạnh mẽ trong tấn công, chính xác trong kiểm soát. Hiệu suất vượt trội cho người chơi bán chuyên và chuyên nghiệp.' },
-            { image: 'https://pickleplay.vn/cdn/shop/files/product_m_u6_b57ef00a-6e62-48f6-97d6-32363e17e5c0.png', title: 'CÔNG NGHỆ VẬT LIỆU CAO CẤP', subtitle: 'CARBON TORAY 3 LỚP TỪ NHẬT BẢN', paragraph: 'Độ bền vượt trội, khả năng bám bóng cao và phản hồi ổn định, giúp kiểm soát bóng chính xác hơn.' },
-            { image: 'https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png', title: 'LÕI GEN 4 TIÊN TIẾN', subtitle: 'TÍCH HỢP 2 VIỀN FOAM + LỚP EVA', paragraph: 'Giảm rung, tăng độ êm và mở rộng điểm ngọt, mang lại cảm giác đánh chắc tay và ổn định.' },
-            { image: 'https://pickleplay.vn/cdn/shop/files/product_m_u2_451c2715-43ec-4171-a66f-6912e6ff6dfc.png', title: 'THIẾT KẾ HIỆN ĐẠI', subtitle: 'TỐI ƯU LỐI CHƠI', paragraph: 'Độ dày 14mm, cán dài 14cm và mặt vợt 19.5x29cm giúp cân bằng lý tưởng giữa sức mạnh và kiểm soát.' }
+            { image: 'https://pickleplay.vn/cdn/shop/files/z7037608699618_1d61e51545892718911f8d9e81ac5b81.jpg?v=1758519364&width=1600', title: 'CÔNG THỦ TOÀN DIỆN', subtitle: 'LỰA CHỌN LÝ TƯỞNG', paragraph: 'Mạnh mẽ trong tấn công, chính xác trong kiểm soát. Hiệu suất vượt trội cho người chơi bán chuyên và chuyên nghiệp.' }
         ];
         const slices = document.querySelectorAll('.slice');
         const contentOverlay = document.getElementById('content');
@@ -49,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const subtitleEl = document.getElementById('subtitle');
         const paragraphEl = document.getElementById('paragraph');
         let currentSlide = 0;
-        let timer; 
+        // let timer; 
         function updateBackgroundSize() {
             const isMobile = window.innerWidth <= 768;
             const visibleCount = isMobile ? 3 : 5; 
@@ -57,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
             slices.forEach(slice => { slice.style.backgroundSize = size; });
         }
         function showSlide(index) {
-            if (timer) clearTimeout(timer); 
+            // if (timer) clearTimeout(timer); 
             const slide = slides[index];
             slices.forEach(slice => {
                 slice.style.backgroundImage = `url('${slide.image}')`;
@@ -74,10 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     subtitleEl.textContent = slide.subtitle;
                     paragraphEl.textContent = slide.paragraph;
                     contentOverlay.classList.add('show');
-                    timer = setTimeout(() => {
-                        currentSlide = (currentSlide + 1) % slides.length;
-                        showSlide(currentSlide);
-                    }, 8000);
+                    // timer = setTimeout(() => {
+                    //     currentSlide = (currentSlide + 1) % slides.length;
+                    //     showSlide(currentSlide);
+                    // }, 8000);
                 }, 2100);
             }, 100);
         }
@@ -92,14 +89,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!productSection) return;
 
         const data = [
-            { id: 0, title: "WAVEX - PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #4a225d 0%, var(--brand-black) 75%)", "title-color": "#A54DCF" },
-            { id: 1, title: "WAVEX - RED", image: "https://pickleplay.vn/cdn/shop/files/product_m_u6_b57ef00a-6e62-48f6-97d6-32363e17e5c0.png", background: "radial-gradient(circle at 50% 50%, #7c1010 0%, var(--brand-black) 75%)", "title-color": "#F61F1F" },
-            { id: 2, title: "WAVEX - LIGHT BLUE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #3a6275 0%, var(--brand-black) 75%)", "title-color": "#93CEE6" },
-            { id: 3, title: "WAVEX - GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png", background: "radial-gradient(circle at 50% 50%, #02571f 0%, var(--brand-black) 75%)", "title-color": "#04AA3D" },
-            { id: 4, title: "WAVEX - PINK", image: "https://pickleplay.vn/cdn/shop/files/product_m_u2_451c2715-43ec-4171-a66f-6912e6ff6dfc.png", background: "radial-gradient(circle at 50% 50%, #7a3a50 0%, var(--brand-black) 75%)", "title-color": "#E37097" },
-            { id: 5, title: "WAVEX - ORANGE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #834700 0%, var(--brand-black) 75%)", "title-color": "#FF8A00" },
-            { id: 6, title: "WAVEX - WHITE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u3_58c92a3a-1cc8-434b-b656-1f73937204cc.png", background: "radial-gradient(circle at 50% 50%, #444444 0%, var(--brand-black) 75%)", "title-color": "#FFFFFF" },
-            { id: 7, title: "WAVEX - LIME GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #4c621a 0%, var(--brand-black) 75%)", "title-color": "#95BE35" }
+            { id: 6, title: "WAVEX - WHITE", image: "./assets/imgs/products/white.webp", background: "radial-gradient(circle at 50% 50%, #444444 0%, var(--brand-black) 75%)", "title-color": "#FFFFFF" },
+            // { id: 0, title: "WAVEX - PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #4a225d 0%, var(--brand-black) 75%)", "title-color": "#A54DCF" },
+            { id: 1, title: "WAVEX - RED", image: "./assets/imgs/products/red.webp", background: "radial-gradient(circle at 50% 50%, #7c1010 0%, var(--brand-black) 75%)", "title-color": "#F61F1F" },
+            { id: 2, title: "WAVEX - LIGHT BLUE", image: "./assets/imgs/products/blue.webp", background: "radial-gradient(circle at 50% 50%, #3a6275 0%, var(--brand-black) 75%)", "title-color": "#93CEE6" },
+            { id: 3, title: "WAVEX - GREEN", image: "./assets/imgs/products/green.webp", background: "radial-gradient(circle at 50% 50%, #02571f 0%, var(--brand-black) 75%)", "title-color": "#04AA3D" },
+            { id: 4, title: "WAVEX - PINK", image: "./assets/imgs/products/pink.webp", background: "radial-gradient(circle at 50% 50%, #7a3a50 0%, var(--brand-black) 75%)", "title-color": "#E37097" },
+            { id: 5, title: "WAVEX - ORANGE", image: "./assets/imgs/products/orange.webp", background: "radial-gradient(circle at 50% 50%, #834700 0%, var(--brand-black) 75%)", "title-color": "#FF8A00" },
+            // { id: 7, title: "WAVEX - LIME GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #4c621a 0%, var(--brand-black) 75%)", "title-color": "#95BE35" }
         ];
         
         let currentItem = 0;
@@ -166,14 +163,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!galleryContainer) return;
 
         const data = [
-            { id: 0, name: "WAVEX - PURPLE", color: "PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", colorHEX: "#A54DCF" },
-            { id: 1, name: "WAVEX - RED", color: "RED", image: "https://pickleplay.vn/cdn/shop/files/product_m_u6_b57ef00a-6e62-48f6-97d6-32363e17e5c0.png", colorHEX: "#F61F1F" },
-            { id: 2, name: "WAVEX - LIGHT BLUE", color: "LIGHT BLUE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", colorHEX: "#93CEE6" },
-            { id: 3, name: "WAVEX - GREEN", color: "GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png", colorHEX: "#04AA3D" },
-            { id: 4, name: "WAVEX - PINK", color: "PINK", image: "https://pickleplay.vn/cdn/shop/files/product_m_u2_451c2715-43ec-4171-a66f-6912e6ff6dfc.png", colorHEX: "#E37097" },
-            { id: 5, name: "WAVEX - ORANGE", color: "ORANGE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", colorHEX: "#FF8A00" },
-            { id: 6, name: "WAVEX - WHITE", color: "WHITE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u3_58c92a3a-1cc8-434b-b656-1f73937204cc.png", colorHEX: "#FFFFFF" },
-            { id: 7, name: "WAVEX - LIME GREEN", color: "LIME GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", colorHEX: "#95BE35" }
+            // { id: 0, name: "WAVEX - PURPLE", color: "PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", colorHEX: "#A54DCF" },
+            { id: 1, name: "WAVEX - RED", color: "RED", image: "./assets/imgs/products/red.webp", colorHEX: "#F61F1F" },
+            { id: 2, name: "WAVEX - LIGHT BLUE", color: "LIGHT BLUE", image: "./assets/imgs/products/blue.webp", colorHEX: "#93CEE6" },
+            { id: 3, name: "WAVEX - GREEN", color: "GREEN", image: "./assets/imgs/products/green.webp", colorHEX: "#04AA3D" },
+            { id: 4, name: "WAVEX - PINK", color: "PINK", image: "./assets/imgs/products/pink.webp", colorHEX: "#E37097" },
+            { id: 5, name: "WAVEX - ORANGE", color: "ORANGE", image: "./assets/imgs/products/orange.webp", colorHEX: "#FF8A00" },
+            { id: 6, name: "WAVEX - WHITE", color: "WHITE", image: "./assets/imgs/products/white.webp", colorHEX: "#FFFFFF" },
+            // { id: 7, name: "WAVEX - LIME GREEN", color: "LIME GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", colorHEX: "#95BE35" }
         ];
 
         const fragment = document.createDocumentFragment();
@@ -228,9 +225,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Dữ liệu FAQ (giữ nguyên)
         const faqData = [
-            { id: 0, number: "/01", question: "Vợt này phù hợp với người chơi nào?", answer: "Leopard Wave X là lựa chọn hoàn hảo cho người chơi Pickleball tìm kiếm một cây vợt công thủ toàn diện, lý tưởng cho cả người chơi bán chuyên lẫn chuyên nghiệp muốn nâng cao hiệu suất thi đấu.", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png" },
-            { id: 1, number: "/02", question: "Ưu điểm của Lõi Gen 4 & Carbon Toray?", answer: "Mặt Carbon Toray 3 lớp siêu bền, bám bóng tốt. Lõi Gen 4 + EVA giúp giảm rung, tăng độ êm và mở rộng điểm ngọt (sweet spot), mang lại cảm giác đánh chắc tay và ổn định ngay cả ở tốc độ cao.", image: "https://pickleplay.vn/cdn/shop/files/product_m_u1_1a78adc0-77c9-4cca-974d-e6f8b70d2dfb.png" },
-            { id: 2, number: "/03", question: "Chip NFC để làm gì và sử dụng thế nào?", answer: "Chip NFC dùng để kiểm tra hàng chính hãng. Bạn chỉ cần bật NFC trên điện thoại thông minh và chạm vào vị trí có chip trên vợt, điện thoại sẽ tự động hiển thị thông tin xác thực sản phẩm.", image: "https://pickleplay.vn/cdn/shop/files/product_m_u3_58c92a3a-1cc8-434b-b656-1f73937204cc.png" }
+            { id: 0, number: "/01", question: "Vợt này phù hợp với người chơi nào?", answer: 'Leopard Wave X là lựa chọn hoàn hảo cho người chơi Pickleball tìm kiếm một cây vợt công thủ toàn diện, lý tưởng cho cả người chơi bán chuyên lẫn chuyên nghiệp muốn nâng cao hiệu suất thi đấu. <br/> <ul><li><strong>Người mới chơi:</strong>: Dễ làm quen, kiểm soát tốt, học nhanh hơn</li><li><strong>Người chơi trung cấp:</strong>: Nâng cấp kỹ thuật, công thủ toàn diện</li><li><strong>Người chơi chuyên nghiệp:</strong>: Thi đấu cấp cao, ổn định, bền bỉ</li><li><strong>Người hay bị đau cổ tay:</strong>: Giảm rung, bảo vệ sức khỏe</li></ul>', image: "./assets/imgs/products/white.webp" },
+            { id: 1, number: "/02", question: "Ưu điểm của Lõi Gen 4 & Carbon Toray?", answer: "Mặt Carbon Toray 3 lớp siêu bền, bám bóng tốt. Lõi Gen 4 + EVA giúp giảm rung, tăng độ êm và mở rộng điểm ngọt (sweet spot), mang lại cảm giác đánh chắc tay và ổn định ngay cả ở tốc độ cao.", image: "./assets/imgs/products/red.webp" },
+            { id: 2, number: "/03", question: "Chip NFC để làm gì và sử dụng thế nào?", answer: "Chip NFC dùng để kiểm tra hàng chính hãng. Bạn chỉ cần bật NFC trên điện thoại thông minh và chạm vào vị trí có chip trên vợt, điện thoại sẽ tự động hiển thị thông tin xác thực sản phẩm.", image: "./assets/imgs/products/white.webp" }
         ];
 
         // Các thành phần DOM cho chế độ Desktop
@@ -273,7 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 if (display_Number) display_Number.textContent = data.number;
                 if (display_Question) display_Question.textContent = data.question;
-                if (display_Answer) display_Answer.textContent = data.answer;
+                if (display_Answer) display_Answer.innerHTML = data.answer;
                 display_Wrapper.classList.remove('is-transitioning');
             }, 300); 
 
@@ -448,11 +445,17 @@ document.addEventListener("DOMContentLoaded", () => {
     function initFormSizePicker() {
         const radioInputs = document.querySelectorAll('#order-form input[name="selected_size"]');
         const labels = document.querySelectorAll('#order-form .size-selector-label');
+        const hidden16 = document.querySelectorAll('#order-form .hidden-16');
 
         if (!radioInputs.length || !labels.length) return;
 
         radioInputs.forEach(radio => {
             radio.addEventListener('change', () => {
+                if (radio.id === 'size-16mm') {
+                    hidden16.forEach(el => el.classList.add('hidden'));
+                } else {
+                    hidden16.forEach(el => el.classList.remove('hidden'));
+                }
                 labels.forEach(label => label.classList.remove('active'));
                 const activeLabel = document.querySelector(`label[for="${radio.id}"]`);
                 if (activeLabel) {
