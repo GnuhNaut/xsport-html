@@ -135,8 +135,6 @@ body {
 
 
 /* --- PRODUCT SWITCHER (Section 6) --- */
-/* THÊM MỚI: Thêm transition cho background
-   (Tailwind đã thêm các transition khác, nhưng background thì chưa) */
 #product-section {
     transition-property: color, background, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -407,7 +405,6 @@ input[type="radio"]:checked + .size-selector-label span {
 /* CSS cho thông báo của Form */
 #form-message {
     text-align: left;
-    /* display: block; */
 }
 #form-message.success {
     background-color: rgba(20, 184, 166, 0.1);
@@ -437,7 +434,6 @@ input[type="radio"]:checked + .size-selector-label span {
 
 
 /* ===== PHẦN FAB (FLOATING ACTION BUTTON) ===== */
-/* Khôi phục 100% code CSS gốc của bạn cho FAB */
 .floating-container {
     position: fixed;
     bottom: 60px;
@@ -507,7 +503,6 @@ input[type="radio"]:checked + .size-selector-label span {
     animation: pulse-support 2.2s infinite;
 }
 
-/* Popup Modal */
 .popup {
     position: fixed;
     top: 0;
@@ -590,7 +585,6 @@ input[type="radio"]:checked + .size-selector-label span {
 /* 1. Mặc định ẨN panel trả lời mobile trên DESKTOP */
 .faq-mobile-answer {
     display: none; 
-    /* Các thuộc tính transition sẽ được đặt trong media query */
 }
 
 /* 2. Ẩn khối hiển thị chung (bên trái) trên MOBILE */
@@ -601,37 +595,36 @@ input[type="radio"]:checked + .size-selector-label span {
 
     /* 3. HIỂN THỊ panel mobile (nhưng ở trạng thái đóng) trên MOBILE */
     .faq-mobile-answer {
-        display: block; /* Ghi đè display: none */
+        display: block;
         max-height: 0;
         overflow: hidden;
         opacity: 0;
         transition: all 0.6s ease-out;
-        padding: 0 1.5rem; /* 0 padding khi đóng */
+        padding: 0 1.5rem;
         margin: 0;
         background-color: #000;
         border-radius: 0 0 12px 12px;
-        /* Căn chỉnh viền */
         border: 1px solid #444;
-        border-top: none; /* Vì viền trên đã có ở button */
+        border-top: none;
         color: #ccc;
         margin-top: 0 !important;
     }
 
     /* 4. Khi button.active, MỞ panel trả lời (CHỈ TRÊN MOBILE) */
     .faq-list-button.active + .faq-mobile-answer {
-        max-height: 500px; /* Đủ lớn để chứa nội dung */
+        max-height: 500px;
         opacity: 1;
-        padding: 1.5rem; /* Thêm padding khi mở */
-        margin-bottom: 1rem; /* Khoảng cách giữa các mục */
-        border-color: var(--brand-teal); /* Đổi viền sang màu teal */
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        border-color: var(--brand-teal);
     }
 
     /* 5. Điều chỉnh style của button khi active (CHỈ TRÊN MOBILE) */
     .faq-list-button.active {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        margin-bottom: 0 !important; /* Xóa margin của tailwind */
-        border-bottom-color: transparent; /* Ẩn viền dưới của button */
+        margin-bottom: 0 !important;
+        border-bottom-color: transparent;
     }
 }
 
@@ -696,26 +689,22 @@ input[type="radio"]:checked + .size-selector-label span {
 }
 /* ============ DÁN TỪ ĐÂY VÀO CUỐI FILE main.css ============ */
 
-/* ============ CSS CHO SECTION KOC/KOL SLIDER (v5) ============ */
+/* ============ CSS CHO SECTION KOC/KOL SLIDER (v5) (ĐÃ DỌN DẸP) ============ */
 #koc-review-slider {
-    /* Các biến CSS cục bộ, TÍCH HỢP với theme XSPORT */
     --koc-gap: 1.25rem;
     --koc-speed: 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --koc-closed: 8rem;  /* Rộng hơn để "fill" hơn */
-    --koc-open: 26rem;   /* Rộng hơn */
-    --koc-accent: var(--brand-teal); /* Dùng màu teal chủ đạo */
-    
-    font-family: "Montserrat", sans-serif; /* Dùng font chủ đạo */
+    --koc-closed: 8rem;
+    --koc-open: 26rem; /* 416px, đủ rộng cho TikTok embed */
+    --koc-accent: var(--brand-teal);
+    font-family: "Montserrat", sans-serif;
 }
 
-/* Áp dụng font chữ cho toàn section */
 #koc-review-slider * {
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif;
 }
 
 #koc-review-slider .head {
-    /* Đã có class container, không cần max-width */
     padding-bottom: 40px;
     display: flex;
     justify-content: space-between;
@@ -723,7 +712,6 @@ input[type="radio"]:checked + .size-selector-label span {
     gap: 2rem;
 }
 
-/* Ẩn H2 mặc định của slider (vì ta dùng H2 riêng) */
 #koc-review-slider .head h2 { display: none; }
 
 #koc-review-slider .nav-btn {
@@ -751,9 +739,9 @@ input[type="radio"]:checked + .size-selector-label span {
 }
 
 #koc-review-slider .slider {
-    max-width: 100%; /* Chiếm 100% chiều rộng */
+    max-width: 100%;
     margin: auto;
-    overflow: hidden; /* Đây là viewport cuộn */
+    overflow: hidden;
 }
 
 #koc-review-slider .controls {
@@ -769,138 +757,82 @@ input[type="radio"]:checked + .size-selector-label span {
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     padding-bottom: 40px;
-
-    /* "Chiêu" để card đầu tiên nằm ở giữa */
     padding-left: calc(40vw - var(--koc-open) / 2);
     padding-right: calc(40vw - var(--koc-open) / 2);
 }
 #koc-review-slider .track::-webkit-scrollbar { display: none; }
-.index-top {
+
+/* Class này sẽ được JS thêm vào blockquote */
+.index-top blockquote{
     z-index: 20;
 }
+
 #koc-review-slider .project-card {
     position: relative;
-    flex: 0 0 var(--koc-closed); /* Chiều rộng khi đóng */
+    flex: 0 0 var(--koc-closed);
     height: 38rem;
     border-radius: 1rem;
     overflow: hidden;
     cursor: pointer;
     transition: flex-basis var(--koc-speed), transform var(--koc-speed);
-    border: 2px solid #444; /* Thêm border mờ */
+    border: 2px solid #444;
+    background-color: #000;
 }
 #koc-review-slider .project-card[active] {
-    flex: 0 0 var(--koc-open); /* Chiều rộng khi mở */
-    /* transform: translateY(-6px); */
-    box-shadow: 0 18px 55px rgba(20, 184, 166, 0.2); /* Sáng theo màu teal */
-    border-color: var(--koc-accent); /* Border sáng khi active */
+    flex: 0 0 var(--koc-open);
+    box-shadow: 0 18px 55px rgba(20, 184, 166, 0.2);
+    border-color: var(--koc-accent);
 }
 
-#koc-review-slider .project-card__bg {
-    position: absolute;
-    inset: 0;
+/* Style cho blockquote (video tiktok) */
+#koc-review-slider .project-card .tiktok-embed {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    filter: brightness(0.6) saturate(80%) blur(2px);
-    transition: filter 0.3s, transform var(--koc-speed);
+    opacity: 0; /* Ẩn khi không active */
+    transition: opacity 0.3s;
+    pointer-events: none; /* Không cho tương tác khi "đóng" */
+    position: absolute; /* Thêm position để z-index hoạt động */
 }
-#koc-review-slider .project-card:hover .project-card__bg {
-    filter: brightness(0.8) saturate(100%) blur(0px);
-    transform: scale(1.06);
-}
-#koc-review-slider .project-card[active] .project-card__bg {
-    filter: brightness(0.7) saturate(100%) blur(0px); /* Nền rõ hơn khi active */
+#koc-review-slider .project-card[active] .tiktok-embed {
+    opacity: 1;
+    pointer-events: auto; /* Cho tương tác khi "mở" */
 }
 
-
+/* Style cho overlay chứa tiêu đề */
 #koc-review-slider .project-card__content {
     position: absolute;
     inset: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Đẩy tiêu đề xuống dưới */
+    justify-content: center;
     align-items: center;
     gap: 0.7rem;
-    padding: 1.5rem 0.5rem; /* Padding cho tiêu đề dọc */
+    padding: 1.5rem 0.5rem;
     background: linear-gradient(transparent 30%, rgba(0, 0, 0, 0.9) 100%);
-    z-index: 2;
+    z-index: 2; /* Luôn ở trên blockquote */
 }
 #koc-review-slider .project-card__title {
     color: #fff;
     font-weight: 700;
     font-size: 1.35rem;
-    writing-mode: vertical-rl;
+    writing-mode: vertical-rl; /* Tiêu đề dọc khi "đóng" */
     transform: rotate(180deg);
     text-shadow: 0 0 10px rgba(0,0,0,0.7);
-}
-#koc-review-slider .project-card__thumb,
-#koc-review-slider .project-card__desc,
-#koc-review-slider .project-card__btn {
-    display: none;
+    transition: all var(--koc-speed);
 }
 
+/* Style khi "mở" */
 #koc-review-slider .project-card[active] .project-card__content {
-    flex-direction: row;
-    justify-content: flex-start; /* Reset */
-    align-items: center;
-    padding: 1.2rem 2rem;
-    gap: 1.5rem; /* Tăng khoảng cách */
-    background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.9) 100%);
+    justify-content: flex-end; /* Đẩy tiêu đề xuống dưới */
+    background: linear-gradient(transparent 70%, rgba(0, 0, 0, 0.9) 100%);
+    padding: 1.5rem;
 }
 #koc-review-slider .project-card[active] .project-card__title {
-    writing-mode: horizontal-tb;
+    writing-mode: horizontal-tb; /* Tiêu đề ngang khi "mở" */
     transform: none;
-    font-size: 2.0rem;
-    color: var(--koc-accent); /* Tiêu đề màu teal */
-    text-shadow: none;
-}
-#koc-review-slider .project-card[active] .project-card__thumb,
-#koc-review-slider .project-card[active] .project-card__desc,
-#koc-review-slider .project-card[active] .project-card__btn {
-    display: block;
-}
-
-#koc-review-slider .project-card__thumb {
-    width: 140px; /* Tăng kích thước ảnh KOC */
-    height: 220px;
-    border-radius: 0.45rem;
-    object-fit: cover;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    flex-shrink: 0;
-    border: 2px solid var(--koc-accent);
-}
-#koc-review-slider .project-card__desc {
-    color: #ddd;
-    font-size: 1rem;
-    line-height: 1.7; /* Tăng line-height */
-    font-style: italic;
-    border-left: 3px solid var(--koc-accent); /* Thêm gạch dọc */
-    padding-left: 1rem;
-    margin-bottom: 1rem; /* Thêm khoảng cách với nút */
-}
-
-#koc-review-slider .project-card__btn {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: transparent;
+    font-size: 1.5rem;
     color: var(--koc-accent);
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 30px;
-    border: 2px solid var(--koc-accent);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    align-self: flex-start; /* Căn nút lên trên */
-}
-#koc-review-slider .project-card__btn:hover {
-    background-color: var(--koc-accent);
-    color: #000;
-    box-shadow: 0 0 20px var(--koc-accent);
-    transform: translateY(-3px);
+    text-shadow: none;
 }
 
 #koc-review-slider .dots {
@@ -927,10 +859,11 @@ input[type="radio"]:checked + .size-selector-label span {
     display: none;
 }
 
+/* --- Mobile Styles --- */
 @media (max-width: 767px) {
     #koc-review-slider {
-        --koc-closed: 100%;
-        --koc-open: 100%;
+        --koc-closed: auto;
+        --koc-open: auto;
         --koc-gap: 0.8rem;
     }
     #koc-review-slider .head {
@@ -941,26 +874,33 @@ input[type="radio"]:checked + .size-selector-label span {
     }
     #koc-review-slider .controls {
         width: 100%;
-        justify-content: flex-end; /* Nút qua phải */
+        justify-content: flex-end;
     }
     #koc-review-slider .slider { padding: 0 15px; }
     #koc-review-slider .track {
         flex-direction: column;
         scroll-snap-type: y mandatory;
         gap: var(--koc-gap);
-        padding: 0 0 20px 0; /* Reset padding */
+        padding: 0 0 20px 0;
     }
     #koc-review-slider .project-card {
         height: auto;
-        min-height: 80px;
+        min-height: 80px; /* Trạng thái "co lại" */
         flex: 0 0 auto;
         width: 100%;
         scroll-snap-align: start;
+        background: var(--brand-navy-light); /* Nền khi co lại */
     }
     #koc-review-slider .project-card[active] {
         min-height: auto;
         transform: none;
         box-shadow: 0 8px 25px rgba(20, 184, 166, 0.2);
+        background: #000; /* Nền khi mở ra */
+    }
+    
+    /* Mobile "co lại" state */
+    #koc-review-slider .project-card .tiktok-embed {
+        display: none; /* Ẩn video khi co lại */
     }
     #koc-review-slider .project-card__content {
         flex-direction: row;
@@ -968,144 +908,39 @@ input[type="radio"]:checked + .size-selector-label span {
         padding: 1rem;
         align-items: center;
         gap: 1rem;
+        background: none;
+        position: relative;
     }
     #koc-review-slider .project-card__title {
         writing-mode: horizontal-tb;
         transform: none;
         font-size: 1.2rem;
         margin-right: auto;
-    }
-    #koc-review-slider .project-card__thumb,
-    #koc-review-slider .project-card__desc,
-    #koc-review-slider .project-card__btn {
-        display: none;
+        color: #fff;
     }
 
+    /* Mobile "mở ra" state */
+    #koc-review-slider .project-card[active] .tiktok-embed {
+        display: block; /* Hiện video khi mở ra */
+        opacity: 1;
+        height: auto;
+        padding: 0.5rem;
+        position: relative; /* Đổi về relative */
+        pointer-events: auto;
+    }
     #koc-review-slider .project-card[active] .project-card__content {
         flex-direction: column;
         align-items: center;
         padding: 1.5rem;
+        padding-top: 0;
     }
     #koc-review-slider .project-card[active] .project-card__title {
         font-size: 1.8rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0;
         text-align: center;
-    }
-    #koc-review-slider .project-card[active] .project-card__thumb {
-        display: block;
-        width: 150px;
-        height: 200px;
-        margin-bottom: 1rem;
-    }
-    #koc-review-slider .project-card[active] .project-card__desc {
-        display: block;
-        font-size: 0.95rem;
-        max-width: 100%;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        padding-left: 0;
-        border-left: none;
-        border-top: 2px solid var(--koc-accent);
-        padding-top: 1rem;
-    }
-    #koc-review-slider .project-card[active] .project-card__btn {
-        display: block;
-        align-self: center;
-        width: 100%;
-        text-align: center;
-        padding: 0.7rem;
+        color: var(--koc-accent);
     }
     #koc-review-slider .dots { display: none; }
 }
 
-/* ============ CSS CHO MODAL VIDEO KOC (v5 - Sửa Lỗi CSS) ============ */
-#koc-video-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-#koc-video-modal.is-open {
-    opacity: 1;
-    visibility: visible;
-}
-.koc-modal-content {
-    position: relative;
-    width: auto;
-    height: auto;
-    max-height: 90vh;
-    max-width: 90vw;
-    /* NỀN ĐEN CHO MODAL */
-    background: #000; 
-    border-radius: 8px;
-    overflow: hidden;
-}
-#modal-video-player {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #000;
-    max-height: 90vh;
-    /* Thêm padding để video không bị dính sát viền modal */
-    padding: 1rem;
-    /* SỬA LỖI: Padding trên để chừa chỗ cho nút X */
-    padding-top: 2.5rem; 
-}
-/* Style riêng cho TikTok Embed */
-#modal-video-player .tiktok-embed {
-    margin: 0 !important;
-    max-width: 450px;
-    min-width: 300px;
-    max-height: 85vh;
-    background: #FFF; /* TikTok cần nền trắng */
-    border-radius: 8px; /* Bo tròn video */
-}
-#modal-close-btn {
-    position: absolute;
-    /* ĐẶT NÚT X BÊN TRONG MODAL */
-    top: 10px; 
-    right: 10px;
-    font-size: 1.5rem;
-    color: #888; /* Màu xám cho nút X */
-    background: #222; /* Nền cho nút X */
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    z-index: 2001;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    /* Căn giữa icon (nếu dùng font awesome) */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#modal-close-btn:hover { 
-    transform: scale(1.1);
-    color: #FFF;
-    background: #F00; /* Màu đỏ khi hover */
-}
-@media (max-width: 767px) {
-    #modal-video-player {
-        padding: 0.5rem;
-        padding-top: 2.5rem;
-    }
-    #modal-video-player .tiktok-embed {
-        max-width: 90vw;
-    }
-    #modal-close-btn {
-        top: 5px;
-        right: 5px;
-    }
-}
 /* ============ KẾT THÚC PHẦN DÁN CSS ============ */
