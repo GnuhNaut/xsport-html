@@ -1,0 +1,1079 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === THỬ NGHIỆM MÀU NỀN MỚI === */
+:root {
+    --brand-teal: #14b8a6;
+    --brand-navy-light: #1A1A26; /* Nền section (Xanh than đậm) */
+    --brand-black: #121218;      /* Nền body (Đen-Xanh) */
+}
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: var(--brand-black);
+    color: #F5F5F5;
+    overflow-x: hidden;
+}
+
+/* THÊM MỚI: CSS CHO MENU MOBILE MƯỢT MÀ HƠN */
+#mobile-menu {
+    /* Trạng thái ẩn */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s ease-out;
+    position: absolute; /* Đảm bảo nó không đẩy nội dung */
+    left: 0;
+    right: 0;
+    /* (Các style cũ như bg-black/90 pb-3 đã được Tailwind xử lý) */
+}
+#mobile-menu.is-open {
+    /* Trạng thái hiện */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+/* --- STYLES CHO CÁC NÚT CTA --- */
+.cta-primary {
+    display: inline-block; padding: 0.75rem 1.5rem; background-color: var(--brand-teal); color: #000;
+    font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; border-radius: 30px; border: 2px solid var(--brand-teal);
+    transition: all 0.3s ease; cursor: pointer; text-decoration: none; text-align: center;
+}
+.cta-primary:hover {
+    background-color: transparent; color: var(--brand-teal);
+    box-shadow: 0 0 20px var(--brand-teal); transform: translateY(-3px);
+}
+.cta-primary:disabled {
+    background-color: #555;
+    border-color: #555;
+    color: #999;
+    cursor: not-allowed;
+    animation: none;
+}
+.cta-primary:disabled::before {
+    animation: none; /* Tắt shimmer khi disabled */
+}
+
+.cta-secondary {
+    display: inline-block; padding: 0.75rem 1.5rem; background-color: transparent; color: var(--brand-teal);
+    font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; border-radius: 30px; border: 2px solid var(--brand-teal);
+    transition: all 0.3s ease; cursor: pointer; text-decoration: none; text-align: center;
+}
+.cta-secondary:hover {
+    background-color: var(--brand-teal); color: #000;
+    box-shadow: 0 0 20px var(--brand-teal); transform: translateY(-3px);
+}
+.cta-large { padding: 1rem 2.5rem; font-size: 1rem; }
+.shimmer-btn { position: relative; overflow: hidden; }
+.shimmer-btn::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 3s infinite;
+}
+@keyframes shimmer { 0% { left: -100%; } 50% { left: 100%; } 100% { left: 100%; } }
+
+
+/* --- ANIMATION CUỘN TRANG --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    visibility: hidden;
+    transition: opacity 1s cubic-bezier(0.6, 0.2, 0.4, 1), 
+                transform 1s cubic-bezier(0.6, 0.2, 0.4, 1),
+                visibility 1s;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); visibility: visible; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+
+/* --- SECTION 1: HERO SLIDER --- */
+.slider-container { width: 100%; position: relative; background: #000; overflow: hidden; margin: 0 auto; }
+@media (min-width: 769px) { .slider-container { height: 100vh; max-width: 1920px; } }
+@media (max-width: 768px) { .slider-container { aspect-ratio: 16 / 9; max-width: 100%; } }
+.slice {
+    position: absolute; top: -100%; height: 100%; background-repeat: no-repeat;
+    background-position: center; background-size: 500% 100%; opacity: 0;
+    -webkit-backface-visibility: hidden; backface-visibility: hidden;
+    transform: translateZ(0); will-change: transform, top; z-index: 1;
+}
+.slice.active { animation: fall 1.5s ease-out forwards; }
+@media (min-width: 769px) {
+    .slice { width: calc(100% / 5); }
+    .slice:nth-child(1) { left: 0; background-position: 0% 0%; animation-delay: 0s; z-index: 1; }
+    .slice:nth-child(2) { left: calc(100% / 5); background-position: 25% 0%; animation-delay: .15s; margin-left: -0.5px; z-index: 2; }
+    .slice:nth-child(3) { left: calc(100% / 5 * 2); background-position: 50% 0%; animation-delay: .3s; margin-left: -0.5px; z-index: 3; }
+    .slice:nth-child(4) { left: calc(100% / 5 * 3); background-position: 75% 0%; animation-delay: .45s; margin-left: -0.5px; z-index: 4; }
+    .slice:nth-child(5) { left: calc(100% / 5 * 4); background-position: 100% 0%; animation-delay: .6s; margin-left: -0.5px; z-index: 5; }
+}
+@media (max-width: 768px) {
+    .slice { width: calc(100% / 3); }
+    .slice:nth-child(1) { left: 0; background-position: 0% 0%; animation-delay: 0s; z-index: 1; }
+    .slice:nth-child(2) { left: calc(100% / 3); background-position: 50% 0%; animation-delay: .2s; margin-left: -0.5px; z-index: 2; }
+    .slice:nth-child(3) { left: calc(100% / 3 * 2); background-position: 100% 0%; animation-delay: .4s; margin-left: -2.0px; z-index: 3; width: calc((100% / 3) + 2.5px); }
+    .slice:nth-child(4), .slice:nth-child(5) { display: none; }
+}
+@keyframes fall {
+    0%   { top: -100%; opacity: 0; }
+    10%  { opacity: 1; }
+    100% { top: 0%; opacity: 1; }
+}
+.content-overlay {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    text-align: center; color: white; z-index: 10; opacity: 0;
+    width: 80%; max-width: 1000px; padding: 20px;
+}
+.content-overlay.show { animation: fadeInUp 1s ease-out forwards; }
+@keyframes fadeInUp {
+    0%   { opacity: 0; transform: translate(-50%, -40%); }
+    100% { opacity: 1; transform: translate(-50%, -50%); }
+}
+.content-overlay h1 { font-size: clamp(2rem, 8vw, 4rem); font-weight: bold; margin-bottom: 20px; text-shadow: 2px 2px 10px rgba(0,0,0,.8); letter-spacing: 2px; }
+.content-overlay h2 { font-size: clamp(1.2rem, 5vw, 2rem); font-weight: 300; margin-bottom: 15px; text-shadow: 2px 2px 8px rgba(0,0,0,.7); }
+.content-overlay p { font-size: clamp(.9rem, 3vw, 1.2rem); line-height: 1.6; text-shadow: 1px 1px 5px rgba(0,0,0,.8); font-weight: 300; }
+
+
+/* --- PRODUCT SWITCHER (Section 6) --- */
+#product-section {
+    transition-property: color, background, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 700ms;
+}
+
+:root { --title-color: #eee; }
+.animate-image-in { animation: image-in 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-image-out { animation: image-out 0.8s ease-in-out forwards; }
+.animate-title-in { animation: title-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-title-out { animation: title-out 0.6s ease-in forwards; }
+@keyframes image-in {
+    from { transform: translate(500px, -400px) scale(0); opacity: 0; }
+    to { transform: translate(0, 0) scale(1); opacity: 1; }
+}
+@keyframes image-out {
+    from { transform: translate(0, 0) scale(1); opacity: 1; }
+    to { transform: translate(-500px, 200px) scale(0); opacity: 0; }
+}
+@keyframes title-in {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+@keyframes title-out {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(0); opacity: 0; }
+}
+.product-color-button {
+    position: relative; width: 2.5rem; height: 2.5rem; border-radius: 50%;
+    border: 1px solid #aaa; cursor: pointer; transition: all 0.3s ease-in-out;
+}
+.product-color-button:hover { transform: scale(1.05); }
+.product-color-button:active { transform: scale(0.95); }
+.product-color-button::after {
+    content: ""; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); width: 98%; height: 98%;
+    border-radius: 50%; background: var(--btn-color);
+}
+/* Style cho nút active trong form */
+#order-form .product-color-button.active {
+    border: 3px solid var(--brand-teal);
+    box-shadow: 0 0 10px var(--brand-teal);
+    transform: scale(1.05);
+}
+
+
+/* --- CSS KÍNH LÚP (Section 2) --- */
+#loupe-glass {
+    position: absolute;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    width: 350px;
+    height: 350px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none; 
+    background-repeat: no-repeat;
+    overflow: hidden; 
+}
+#loupe-glass.visible {
+    opacity: 1;
+    visibility: visible;
+}
+#mobile-zoom-prompt { display: none; }
+
+@media (max-width: 768px) {
+    #loupe-glass { display: none !important; }
+    #mobile-zoom-prompt { display: block; }
+}
+
+
+/* --- *** CSS GALLERY MỚI (Section 5 - EXPANDING PANEL) *** --- */
+.expanding-gallery-container {
+    height: 70vh;
+    max-height: 700px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 3rem;
+    padding: 0 1rem;
+}
+
+.gallery-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    background-color: var(--brand-navy-light);
+    border-radius: 12px;
+    margin: 0 0.5rem;
+    border: 2px solid transparent; 
+    transition: all 0.5s ease;
+}
+
+.gallery-panel-image {
+    transform: rotate(15deg) scale(0.9);
+    transition: transform 0.5s ease;
+    object-fit: contain;
+    width: 100%;
+    max-width: 350px;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.gallery-panel-title {
+    opacity: 0;
+    transition: all 0.6s ease;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-weight: 700;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 5%;
+    user-select: none; 
+    text-shadow: 0 0 10px white;
+}
+
+.gallery-panel.active {
+    flex: 3;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 30px -5px var(--accent-color);
+}
+
+.gallery-panel.active .gallery-panel-image {
+    transform: rotate(0deg) scale(1);
+}
+
+.gallery-panel.active .gallery-panel-title {
+    opacity: 1;
+    color: var(--accent-color);
+    text-shadow: 0 0 20px var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    .content-overlay h1 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+    .content-overlay h2 {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+    .content-overlay {
+        padding: 10px 0;
+    }
+    .cta-mobile {
+        padding: 8px !important;
+        font-size: 12px !important;
+    }
+    .expanding-gallery-container {
+        flex-direction: column;
+        height: auto;
+        padding: 0;
+    }
+    .gallery-panel {
+        flex: 1;
+        margin: 0.5rem 0;
+        height: 150px;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding-left: 1rem;
+    }
+    .gallery-panel-image {
+        transform: rotate(0deg) scale(1);
+        max-width: 100px;
+        padding: 0.5rem;
+    }
+    .gallery-panel-title {
+        opacity: 1;
+        font-size: 1.1em;
+        position: relative;
+        bottom: auto;
+        margin-left: 1rem;
+        color: var(--accent-color);
+        text-shadow: none;
+    }
+    .gallery-panel.active {
+        flex: 1;
+        height: 300px;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 0;
+    }
+    .gallery-panel.active .gallery-panel-image {
+        max-width: 200px;
+    }
+     .gallery-panel.active .gallery-panel-title {
+        margin-left: 0;
+        margin-top: 1rem;
+        bottom: auto;
+     }
+}
+
+
+/* --- SECTION 7: FAQ --- */
+.font-micho { 
+    font-family: 'Montserrat', sans-serif !important; 
+    font-weight: 700 !important; 
+    text-transform: uppercase; 
+}
+
+.faq-list-button.active {
+    background-color: #000;
+    border-color: var(--brand-teal);
+    box-shadow: 0 5px 20px rgba(20, 184, 166, 0.1);
+}
+.faq-list-button.active .faq-btn-number {
+    color: var(--brand-teal);
+}
+.faq-list-button.active .faq-btn-text {
+    color: var(--brand-teal);
+}
+.faq-list-button.active .faq-btn-icon {
+    background-color: var(--brand-teal);
+    color: #000;
+    transform: rotate(-45deg);
+}
+#faq-display-wrapper {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+#faq-display-wrapper.is-transitioning {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+
+/* --- CSS CHO BỘ CHỌN SIZE (Section 8) --- */
+.size-selector-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0.5rem;
+    background-color: var(--brand-navy-light);
+    border: 1px solid #444;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.size-selector-label strong {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+.size-selector-label span {
+    transition: color 0.3s ease;
+}
+input[type="radio"]:checked + .size-selector-label {
+    border-color: var(--brand-teal);
+    background-color: #000;
+    box-shadow: 0 0 15px rgba(20, 184, 166, 0.5);
+}
+input[type="radio"]:checked + .size-selector-label strong,
+input[type="radio"]:checked + .size-selector-label span {
+    color: var(--brand-teal);
+}
+
+/* CSS cho thông báo của Form */
+#form-message {
+    text-align: left;
+}
+#form-message.success {
+    background-color: rgba(20, 184, 166, 0.1);
+    border: 1px solid var(--brand-teal);
+    color: var(--brand-teal);
+}
+#form-message.error {
+    background-color: rgba(246, 31, 31, 0.1);
+    border: 1px solid #F61F1F;
+    color: #F61F1F;
+}
+
+/* CSS cho Lightbox xem ảnh mobile */
+#image-lightbox.hidden {
+    display: none;
+}
+#image-lightbox {
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+#image-lightbox.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* ===== PHẦN FAB (FLOATING ACTION BUTTON) ===== */
+.floating-container {
+    position: fixed;
+    bottom: 60px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+
+.floating-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.floating-options button,
+.floating-options a {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    position: relative;
+    text-decoration: none;
+}
+
+.floating-options button span,
+.floating-options a span {
+    display: none;
+    position: absolute;
+    left: 60px;
+    white-space: nowrap;
+    font-size: 14px;
+    color: #111827;
+    margin-top: -2px;
+    background: rgba(255,255,255,.95);
+    padding: 6px 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.1);
+}
+
+.floating-options button:hover span,
+.floating-options a:hover span {
+    display: inline-block;
+    color: #111827;
+}
+
+.floating-button {
+    width: 60px;
+    height: 60px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid #14b8a6;
+    animation: pulse-support 2.2s infinite;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.popup-content {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 480px;
+    position: relative;
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-hotline { background-color: #16a34a; color: #ffffff; }
+.btn-hotline:hover { filter: brightness(1.05); }
+.btn-zalo { background-color: #0a7cff; color: #ffffff; }
+.btn-zalo:hover { filter: brightness(1.05); }
+.btn-facebook { background-color: #1877F2; color: #ffffff; }
+.btn-facebook:hover { filter: brightness(1.05); }
+
+/* Pulse effects */
+.floating-options button,
+.floating-options a {
+    position: relative;
+}
+.floating-options button img,
+.floating-options a img,
+.floating-button img {
+    display: block;
+    pointer-events: none;
+}
+
+@keyframes pulse-green {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22,163,74,0.45); }
+    70% { transform: scale(1.06); box-shadow: 0 0 0 14px rgba(22,163,74,0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(22,163,74,0); }
+}
+@keyframes pulse-blue {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(10,124,255,0.45); }
+    70% { transform: scale(1.06); box-shadow: 0 0 0 14px rgba(10,124,255,0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(10,124,255,0); }
+}
+@keyframes pulse-facebook {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(24,119,242,0.45); }
+    70% { transform: scale(1.06); box-shadow: 0 0 0 14px rgba(24,119,242,0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(24,119,242,0); }
+}
+@keyframes pulse-support {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 #14b8a68f; }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 16px rgba(212,175,55,0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+}
+
+.btn-hotline { animation: pulse-green 2s infinite; }
+.btn-zalo { animation: pulse-blue 2.1s infinite; }
+.btn-facebook { animation: pulse-facebook 2.2s infinite; }
+/* ===== HẾT PHẦN CSS FAB ===== */
+/* ===== BỔ SUNG CHO FAQ MOBILE (Đã sửa lỗi) ===== */
+
+/* 1. Mặc định ẨN panel trả lời mobile trên DESKTOP */
+.faq-mobile-answer {
+    display: none; 
+}
+
+/* 2. Ẩn khối hiển thị chung (bên trái) trên MOBILE */
+@media (max-width: 1023px) {
+    .faq-content-display {
+        display: none;
+    }
+
+    /* 3. HIỂN THỊ panel mobile (nhưng ở trạng thái đóng) trên MOBILE */
+    .faq-mobile-answer {
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.6s ease-out;
+        padding: 0 1.5rem;
+        margin: 0;
+        background-color: #000;
+        border-radius: 0 0 12px 12px;
+        border: 1px solid #444;
+        border-top: none;
+        color: #ccc;
+        margin-top: 0 !important;
+    }
+
+    /* 4. Khi button.active, MỞ panel trả lời (CHỈ TRÊN MOBILE) */
+    .faq-list-button.active + .faq-mobile-answer {
+        max-height: 500px;
+        opacity: 1;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        border-color: var(--brand-teal);
+    }
+
+    /* 5. Điều chỉnh style của button khi active (CHỈ TRÊN MOBILE) */
+    .faq-list-button.active {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-bottom: 0 !important;
+        border-bottom-color: transparent;
+    }
+}
+
+.button-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border-radius: 25px;
+    padding-right: 10px;
+    background-color: #ff442f;
+    font-weight: bold;
+    color: #fff;
+    z-index: 999;
+}
+
+.pulse-background {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #ff442f;
+    border-radius: 50%;
+    animation: pulse 2s infinite ease-in-out;
+    z-index: 1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+}
+
+.float-button {
+    width: 50px;
+    height: 50px;
+    background-color: #ff442f;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    margin-right: 10px;
+}
+/* ============ DÁN TỪ ĐÂY VÀO CUỐI FILE main.css ============ */
+
+/* ============ CSS CHO SECTION KOC/KOL SLIDER (v5) (ĐÃ DỌN DẸP) ============ */
+#koc-review-slider {
+    --koc-gap: 1.25rem;
+    --koc-speed: 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --koc-closed: 8rem;
+    --koc-open: 26rem; /* 416px, đủ rộng cho TikTok embed */
+    --koc-accent: var(--brand-teal);
+    font-family: "Montserrat", sans-serif;
+}
+
+#koc-review-slider * {
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+#koc-review-slider .head {
+    padding-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+}
+
+#koc-review-slider .head h2 { display: none; }
+
+#koc-review-slider .nav-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+    flex-shrink: 0;
+}
+#koc-review-slider .nav-btn:hover {
+    background: var(--koc-accent);
+    color: #000;
+}
+#koc-review-slider .nav-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+#koc-review-slider .slider {
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+
+#koc-review-slider .controls {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+#koc-review-slider .track {
+    display: flex;
+    gap: var(--koc-gap);
+    align-items: flex-start;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 40px;
+    padding-left: calc(40vw - var(--koc-open) / 2);
+    padding-right: calc(40vw - var(--koc-open) / 2);
+}
+#koc-review-slider .track::-webkit-scrollbar { display: none; }
+
+/* Class này sẽ được JS thêm vào blockquote */
+.index-top blockquote{
+    z-index: 20;
+}
+
+#koc-review-slider .project-card {
+    position: relative;
+    flex: 0 0 var(--koc-closed);
+    height: 38rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: flex-basis var(--koc-speed), transform var(--koc-speed);
+    border: 2px solid #444;
+    background-color: #000;
+}
+#koc-review-slider .project-card[active] {
+    flex: 0 0 var(--koc-open);
+    box-shadow: 0 18px 55px rgba(20, 184, 166, 0.2);
+    border-color: var(--koc-accent);
+}
+
+/* Style cho blockquote (video tiktok) */
+#koc-review-slider .project-card .tiktok-embed {
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Ẩn khi không active */
+    transition: opacity 0.3s;
+    pointer-events: none; /* Không cho tương tác khi "đóng" */
+    position: absolute; /* Thêm position để z-index hoạt động */
+}
+#koc-review-slider .project-card[active] .tiktok-embed {
+    opacity: 1;
+    pointer-events: auto; /* Cho tương tác khi "mở" */
+}
+
+/* Style cho overlay chứa tiêu đề */
+#koc-review-slider .project-card__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1.5rem 0.5rem;
+    background: linear-gradient(transparent 30%, rgba(0, 0, 0, 0.9) 100%);
+    z-index: 2; /* Luôn ở trên blockquote */
+}
+#koc-review-slider .project-card__title {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.35rem;
+    writing-mode: vertical-rl; /* Tiêu đề dọc khi "đóng" */
+    transform: rotate(180deg);
+    text-shadow: 0 0 10px rgba(0,0,0,0.7);
+    transition: all var(--koc-speed);
+}
+
+/* Style khi "mở" */
+#koc-review-slider .project-card[active] .project-card__content {
+    justify-content: flex-end; /* Đẩy tiêu đề xuống dưới */
+    background: linear-gradient(transparent 70%, rgba(0, 0, 0, 0.9) 100%);
+    padding: 1.5rem;
+}
+#koc-review-slider .project-card[active] .project-card__title {
+    writing-mode: horizontal-tb; /* Tiêu đề ngang khi "mở" */
+    transform: none;
+    font-size: 1.5rem;
+    color: var(--koc-accent);
+    text-shadow: none;
+}
+
+#koc-review-slider .dots {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 20px 0;
+}
+#koc-review-slider .dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: 0.3s;
+}
+#koc-review-slider .dot.active {
+    background: var(--koc-accent);
+    transform: scale(1.2);
+}
+
+/* Ẩn các template chứa code TikTok */
+#koc-modal-templates {
+    display: none;
+}
+
+/* --- Mobile Styles --- */
+@media (max-width: 767px) {
+    #koc-review-slider {
+        --koc-closed: auto;
+        --koc-open: auto;
+        --koc-gap: 0.8rem;
+    }
+    #koc-review-slider .head {
+        padding: 0 15px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    #koc-review-slider .controls {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    #koc-review-slider .slider { padding: 0 15px; }
+    #koc-review-slider .track {
+        flex-direction: column;
+        scroll-snap-type: y mandatory;
+        gap: var(--koc-gap);
+        padding: 0 0 20px 0;
+    }
+    #koc-review-slider .project-card {
+        height: auto;
+        min-height: 80px; /* Trạng thái "co lại" */
+        flex: 0 0 auto;
+        width: 100%;
+        scroll-snap-align: start;
+        background: var(--brand-navy-light); /* Nền khi co lại */
+    }
+    #koc-review-slider .project-card[active] {
+        min-height: auto;
+        transform: none;
+        box-shadow: 0 8px 25px rgba(20, 184, 166, 0.2);
+        background: #000; /* Nền khi mở ra */
+    }
+    
+    /* Mobile "co lại" state */
+    #koc-review-slider .project-card .tiktok-embed {
+        display: none; /* Ẩn video khi co lại */
+    }
+    #koc-review-slider .project-card__content {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 1rem;
+        align-items: center;
+        gap: 1rem;
+        background: none;
+        position: relative;
+    }
+    #koc-review-slider .project-card__title {
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: 1.2rem;
+        margin-right: auto;
+        color: #fff;
+    }
+
+    /* Mobile "mở ra" state */
+    #koc-review-slider .project-card[active] .tiktok-embed {
+        display: block; /* Hiện video khi mở ra */
+        opacity: 1;
+        height: auto;
+        padding: 0.5rem;
+        position: relative; /* Đổi về relative */
+        pointer-events: auto;
+    }
+    #koc-review-slider .project-card[active] .project-card__content {
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem;
+        padding-top: 0;
+    }
+    #koc-review-slider .project-card[active] .project-card__title {
+        font-size: 1.8rem;
+        margin-bottom: 0;
+        text-align: center;
+        color: var(--koc-accent);
+    }
+    #koc-review-slider .dots { display: none; }
+}
+
+/* ============ CSS BỔ SUNG CHO CÁC TRANG CHÍNH SÁCH ============ */
+
+/* Áp dụng nền và font chữ chung */
+.policy-page-body {
+    background-color: var(--brand-black);
+    color: #F5F5F5;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Container chính chứa nội dung */
+.policy-container {
+    max-width: 900px; /* Rộng hơn một chút cho nội dung dài */
+    margin: 3rem auto; /* Khoảng cách trên dưới */
+    padding: 2rem 1.5rem;
+    background-color: var(--brand-navy-light);
+    border-radius: 12px;
+    border: 1px solid #444;
+}
+
+/* Tiêu đề chính của trang (H1) */
+.policy-container h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.25rem; /* 36px */
+    font-weight: 800;
+    color: var(--brand-teal);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--brand-teal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Tiêu đề mục (H2) */
+.policy-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem; /* 24px */
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Văn bản (p) */
+.policy-container p {
+    line-height: 1.8;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+/* Danh sách (ul/li) */
+.policy-container ul {
+    list-style-type: none; /* Tắt kiểu list mặc định */
+    margin-left: 0.5rem;
+    padding-left: 0;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.policy-container li {
+    position: relative;
+    padding-left: 1.75rem; /* Khoảng cách để chèn icon */
+    margin-bottom: 0.75rem;
+    line-height: 1.8;
+}
+
+/* Tạo dấu check hoặc dấu hoa thị tùy chỉnh */
+.policy-container li::before {
+    content: '\f058'; /* Mã icon check của Font Awesome */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--brand-teal);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 1rem;
+}
+
+/* Điều chỉnh cho các mục loại trừ (dùng class .exclude) */
+.policy-container li.exclude::before {
+    content: '\f071'; /* Mã icon cảnh báo của Font Awesome */
+    color: #FF8A00; /* Màu cam cảnh báo */
+}
+
+
+/* Liên kết */
+.policy-container a {
+    color: var(--brand-teal);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.policy-container a:hover {
+    text-decoration: underline;
+    filter: brightness(1.2);
+}
+
+/* Đường dẫn quay lại (Breadcrumb) */
+.policy-breadcrumb {
+    color: #888;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.policy-breadcrumb a {
+    color: var(--brand-teal);
+    text-decoration: none;
+}
+.policy-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Nút quay lại trang chủ */
+.back-to-home {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    color: var(--brand-teal);
+    border: 2px solid var(--brand-teal);
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.back-to-home:hover {
+    background-color: var(--brand-teal);
+    color: #000;
+    box-shadow: 0 0 20px var(--brand-teal);
+}
