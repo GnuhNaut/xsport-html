@@ -702,7 +702,7 @@ input[type="radio"]:checked + .size-selector-label span {
     --koc-gap: 1.25rem;
     --koc-speed: 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --koc-closed: 8rem;  /* Rộng hơn để "fill" hơn */
-    --koc-open: 36rem;   /* Rộng hơn */
+    --koc-open: 26rem;   /* Rộng hơn */
     --koc-accent: var(--brand-teal); /* Dùng màu teal chủ đạo */
     
     font-family: "Montserrat", sans-serif; /* Dùng font chủ đạo */
@@ -771,15 +771,17 @@ input[type="radio"]:checked + .size-selector-label span {
     padding-bottom: 40px;
 
     /* "Chiêu" để card đầu tiên nằm ở giữa */
-    padding-left: calc(50vw - var(--koc-open) / 2);
-    padding-right: calc(50vw - var(--koc-open) / 2);
+    padding-left: calc(40vw - var(--koc-open) / 2);
+    padding-right: calc(40vw - var(--koc-open) / 2);
 }
 #koc-review-slider .track::-webkit-scrollbar { display: none; }
-
+.index-top {
+    z-index: 20;
+}
 #koc-review-slider .project-card {
     position: relative;
     flex: 0 0 var(--koc-closed); /* Chiều rộng khi đóng */
-    height: 26rem;
+    height: 38rem;
     border-radius: 1rem;
     overflow: hidden;
     cursor: pointer;
@@ -788,7 +790,7 @@ input[type="radio"]:checked + .size-selector-label span {
 }
 #koc-review-slider .project-card[active] {
     flex: 0 0 var(--koc-open); /* Chiều rộng khi mở */
-    transform: translateY(-6px);
+    /* transform: translateY(-6px); */
     box-shadow: 0 18px 55px rgba(20, 184, 166, 0.2); /* Sáng theo màu teal */
     border-color: var(--koc-accent); /* Border sáng khi active */
 }
