@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!productSection) return;
 
         const data = [
-            { id: 6, title: "WAVEX - WHITE", image: "./assets/imgs/products/white.webp", background: "radial-gradient(circle at 50% 50%, #444444 0%, var(--brand-black) 75%)", "title-color": "#FFFFFF" },
+            { id: 0, title: "WAVEX - WHITE", image: "./assets/imgs/products/white.webp", background: "radial-gradient(circle at 50% 50%, #444444 0%, var(--brand-black) 75%)", "title-color": "#FFFFFF" },
             // { id: 0, title: "WAVEX - PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #4a225d 0%, var(--brand-black) 75%)", "title-color": "#A54DCF" },
             { id: 1, title: "WAVEX - RED", image: "./assets/imgs/products/red.webp", background: "radial-gradient(circle at 50% 50%, #7c1010 0%, var(--brand-black) 75%)", "title-color": "#F61F1F" },
             { id: 2, title: "WAVEX - LIGHT BLUE", image: "./assets/imgs/products/blue.webp", background: "radial-gradient(circle at 50% 50%, #3a6275 0%, var(--brand-black) 75%)", "title-color": "#93CEE6" },
@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function updateContent(id) {
             const newData = data[id];
-            
             productSection.style.background = newData.background;
             productSection.style.setProperty("--title-color", newData["title-color"]);
             mainTitle.style.color = newData["title-color"]; 
