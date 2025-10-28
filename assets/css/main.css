@@ -278,6 +278,21 @@ body {
 }
 
 @media (max-width: 768px) {
+    .content-overlay h1 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+    .content-overlay h2 {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+    .content-overlay {
+        padding: 10px 0;
+    }
+    .cta-mobile {
+        padding: 8px !important;
+        font-size: 12px !important;
+    }
     .expanding-gallery-container {
         flex-direction: column;
         height: auto;
@@ -425,8 +440,8 @@ input[type="radio"]:checked + .size-selector-label span {
 /* Khôi phục 100% code CSS gốc của bạn cho FAB */
 .floating-container {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 60px;
+    left: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -434,7 +449,7 @@ input[type="radio"]:checked + .size-selector-label span {
 }
 
 .floating-options {
-    display: none;
+    display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 10px;
@@ -461,7 +476,7 @@ input[type="radio"]:checked + .size-selector-label span {
 .floating-options a span {
     display: none;
     position: absolute;
-    right: 60px;
+    left: 60px;
     white-space: nowrap;
     font-size: 14px;
     color: #111827;
@@ -618,4 +633,64 @@ input[type="radio"]:checked + .size-selector-label span {
         margin-bottom: 0 !important; /* Xóa margin của tailwind */
         border-bottom-color: transparent; /* Ẩn viền dưới của button */
     }
+}
+
+.button-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border-radius: 25px;
+    padding-right: 10px;
+    background-color: #ff442f;
+    font-weight: bold;
+    color: #fff;
+    z-index: 999;
+}
+
+.pulse-background {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #ff442f;
+    border-radius: 50%;
+    animation: pulse 2s infinite ease-in-out;
+    z-index: 1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+}
+
+.float-button {
+    width: 50px;
+    height: 50px;
+    background-color: #ff442f;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    margin-right: 10px;
 }

@@ -1,0 +1,130 @@
+/* ============ CSS BỔ SUNG CHO CÁC TRANG CHÍNH SÁCH ============ */
+
+/* Áp dụng nền và font chữ chung */
+.policy-page-body {
+    background-color: var(--brand-black);
+    color: #F5F5F5;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Container chính chứa nội dung */
+.policy-container {
+    max-width: 900px; /* Rộng hơn một chút cho nội dung dài */
+    margin: 3rem auto; /* Khoảng cách trên dưới */
+    padding: 2rem 1.5rem;
+    background-color: var(--brand-navy-light);
+    border-radius: 12px;
+    border: 1px solid #444;
+}
+
+/* Tiêu đề chính của trang (H1) */
+.policy-container h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.25rem; /* 36px */
+    font-weight: 800;
+    color: var(--brand-teal);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--brand-teal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Tiêu đề mục (H2) */
+.policy-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem; /* 24px */
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Văn bản (p) */
+.policy-container p {
+    line-height: 1.8;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+/* Danh sách (ul/li) */
+.policy-container ul {
+    list-style-type: none; /* Tắt kiểu list mặc định */
+    margin-left: 0.5rem;
+    padding-left: 0;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.policy-container li {
+    position: relative;
+    padding-left: 1.75rem; /* Khoảng cách để chèn icon */
+    margin-bottom: 0.75rem;
+    line-height: 1.8;
+}
+
+/* Tạo dấu check hoặc dấu hoa thị tùy chỉnh */
+.policy-container li::before {
+    content: '\f058'; /* Mã icon check của Font Awesome */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--brand-teal);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 1rem;
+}
+
+/* Điều chỉnh cho các mục loại trừ (dùng class .exclude) */
+.policy-container li.exclude::before {
+    content: '\f071'; /* Mã icon cảnh báo của Font Awesome */
+    color: #FF8A00; /* Màu cam cảnh báo */
+}
+
+
+/* Liên kết */
+.policy-container a {
+    color: var(--brand-teal);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.policy-container a:hover {
+    text-decoration: underline;
+    filter: brightness(1.2);
+}
+
+/* Đường dẫn quay lại (Breadcrumb) */
+.policy-breadcrumb {
+    color: #888;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.policy-breadcrumb a {
+    color: var(--brand-teal);
+    text-decoration: none;
+}
+.policy-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+/* Nút quay lại trang chủ */
+.back-to-home {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    color: var(--brand-teal);
+    border: 2px solid var(--brand-teal);
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.back-to-home:hover {
+    background-color: var(--brand-teal);
+    color: #000;
+    box-shadow: 0 0 20px var(--brand-teal);
+}

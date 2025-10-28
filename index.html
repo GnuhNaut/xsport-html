@@ -36,27 +36,13 @@
 <body class="bg-black text-brand-cream">
     
     <header id="header" class="bg-black/80 backdrop-blur-lg sticky top-0 z-50 transition-all duration-300 shadow-lg shadow-brand-teal/10">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <nav class="container mx-auto md:px-6 md:py-4 p-3 grid md:grid-cols-3 grid-cols-2 md:justify-items-center items-center">
+            <div class="md:block hidden"></div>
             <a href="#" class="text-2xl font-black text-white tracking-wider uppercase">
-                <img src="./assets/imgs/logo-xsport-white.png" class="h-10" alt="">
+                <img src="./assets/imgs/logo-xsport-white.png" class="md:h-10 h-8" alt="">
             </a>
-            <div class="hidden md:flex space-x-6 items-center font-semibold">
-                <a href="#about" class="text-gray-300 hover:text-brand-teal transition">Về WaveX</a>
-                <a href="#product-section" class="text-gray-300 hover:text-brand-teal transition">Sản Phẩm</a>
-                <a href="#faq" class="text-gray-300 hover:text-brand-teal transition">FAQ</a>
-            </div>
-            <a href="#order-form" class="hidden md:flex cta-primary shimmer-btn">Đặt Hàng Ngay</a>
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-2xl"></i></button>
-            </div>
+            <a href="#order-form" class="cta-primary shimmer-btn cta-mobile">Đặt hàng ngay</a>
         </nav>
-        <div id="mobile-menu" class="md:hidden bg-black/90 pb-3">
-             <a href="#about" class="block px-6 py-3 text-gray-300 hover:bg-brand-navy-light">Về WaveX</a>
-            <a href="#product-section" class="block px-6 py-3 text-gray-300 hover:bg-brand-navy-light">Sản Phẩm</a>
-            <a href="#faq" class="block px-6 py-3 text-gray-300 hover:bg-brand-navy-light">FAQ</a>
-            <a href="#contact" class="block px-6 py-3 text-gray-300 hover:bg-brand-navy-light">Liên Hệ Tư Vấn</a>
-            <a href="#order-form" class="block mx-4 my-3 cta-primary text-center">Đặt Hàng Ngay</a>
-        </div>
     </header>
     
     <main>
@@ -68,9 +54,9 @@
             <div class="slice"></div>
             <div class="slice"></div>
             <div class="content-overlay" id="content">
-                <h1 id="title" class="font-sans"></h1>
-                <h2 id="subtitle" class="font-sans"></h2>
-                <p id="paragraph" class="font-sans"></p>
+                <h1 id="title" class="font-sans">CÔNG THỦ TOÀN DIỆN</h1>
+                <h2 id="subtitle" class="font-sans">LỰA CHỌN LÝ TƯỞNG</h2>
+                <p id="paragraph" class="font-sans">Mạnh mẽ trong tấn công, chính xác trong kiểm soát. Hiệu suất vượt trội cho người chơi bán chuyên và chuyên nghiệp</p>
             </div>
         </section>
 
@@ -81,7 +67,7 @@
                         <span class="text-brand-teal font-semibold uppercase tracking-wider uppercase">/Leopard Wave X</span>
                         <h2 class="font-micho text-2xl lg:text-3xl font-semibold text-white uppercase tracking-wide leading-tight mt-3 uppercase">Giải Pháp Toàn Diện Cho Mọi Phong Cách Chơi</h2>
                         
-                        <div class="my-8 shadow-lg rounded-lg overflow-hidden w-2/3">
+                        <div class="m-auto my-8 shadow-lg rounded-lg overflow-hidden w-2/3">
                              <img src="./assets/imgs/products/red.webp" alt="Pickleball Leopard WaveX" class="w-full h-full object-contain">
                         </div>
                         
@@ -276,8 +262,8 @@
         
         <section id="order-form" class="py-24 bg-cover bg-center" style="background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('https://pickleplay.vn/cdn/shop/files/z7037608699618_1d61e51545892718911f8d9e81ac5b81.jpg?v=1758519364&width=1600');">
              <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl md:text-5xl font-bold font-sans text-white reveal uppercase">Sẵn Sàng Bứt Phá Với Leopard Wave X?</h2>
-                <p class="text-xl text-gray-300 mt-6 max-w-2xl mx-auto reveal">
+                <h2 class="text-2xl md:text-5xl font-bold font-sans text-white reveal uppercase">Sẵn Sàng Bứt Phá Với Leopard Wave X?</h2>
+                <p class="text-md md:text-xl text-gray-300 mt-6 max-w-2xl mx-auto reveal">
                     Sở hữu ngay Leopard Wave X - người bạn đồng hành đáng tin cậy cho mọi tay vợt.
                 </p>
                 
@@ -327,16 +313,16 @@
                         <span class="block text-xl font-semibold text-gray-400 line-through">3.000.000 VNĐ</span>
                         <span class="block text-2xl md:text-3xl font-bold text-brand-teal mt-1">CHỈ CÒN: 2.150.000 VNĐ</span>
                     </div>
-
+                    <p class="text-brand-teal font-bold">Giá Ưu Đãi Chỉ Còn <span class="md:text-4xl">200</span> Chiếc</p>
                     <button type="submit" id="form-submit-button" class="cta-primary w-full cta-large shimmer-btn">
                         <i class="fas fa-shopping-cart mr-2"></i>
-                        Đặt Hàng Ngay - Giá Ưu Đãi Chỉ Còn 200 Chiếc
+                        Đặt Hàng Ngay
                     </button>
                 </form>
 
                 <div id="contact" class="mt-10 reveal">
                      <p class="text-gray-400">Hoặc cần tư vấn thêm?</p>
-                     <a href="tel:0961266266" class="cta-secondary cta-large mt-4">
+                     <a href="https://zalo.me/0961266266" class="cta-secondary cta-large mt-4">
                          <i class="fas fa-comments mr-2"></i>
                          Tư Vấn Miễn Phí
                      </a>
@@ -351,6 +337,10 @@
             <a href="#" class="text-2xl font-black text-white tracking-wider uppercase mb-4 inline-block">
                 <img src="./assets/imgs/logo-xsport-white.png" class="h-20" alt="">
             </a>
+            <div class="mt-4 mb-4 space-x-6">
+                <a href="/chinh-sach-bao-hanh" class="text-gray-400 hover:text-brand-teal transition">Chính Sách Bảo Hành</a>
+                <a href="/chinh-sach-chung" class="text-gray-400 hover:text-brand-teal transition">Điều Khoản Chung</a>
+            </div>
             <p>&copy; 2025 XSPORT. Đã đăng ký bản quyền.</p>
             <p class="mt-2 text-sm">Thiết kế và Phát triển bởi <span class="text-brand-teal">Xuân Media</span>.</p>
         </div>
@@ -358,10 +348,6 @@
 
     <div class="floating-container">
         <div class="floating-options">
-            <a class="btn-hotline" href="tel:0961266266" title="Gọi Hotline">
-                <img src="./assets/icons/phone.svg" alt="Hotline" width="30" height="30">
-                <span>Gọi</span>
-            </a>
             <a class="btn-zalo" href="https://zalo.me/0961266266" target="_blank" rel="noopener" title="Mở Zalo">
                 <img src="./assets/icons/zalo.svg" alt="Zalo" width="30" height="30">
                 <span>Zalo</span>
@@ -371,10 +357,19 @@
                 <span>Facebook</span>
             </a>
         </div>
-        <div class="floating-button" onclick="toggleOptions()">
-            <img id="toggle-icon" src="./assets/icons/support.svg" alt="Support" width="36" height="36">
-        </div>
     </div>
+
+    <a class="" href="tel:0961266266" title="Gọi Hotline">
+        <div class="button-container">
+            <div>
+                <div class="pulse-background"></div>
+                <button class="float-button">
+                    <img src="./assets/icons/phone.svg"  width="35" height="35" alt="Hotline">
+                </button>
+            </div>
+            0961 266 266
+        </div>
+    </a>
     <div id="image-lightbox" class="fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4 hidden">
         <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl">&times;</button>
         <img id="lightbox-image" src="" alt="Ảnh phóng to" class="max-w-full max-h-full object-contain">
