@@ -495,7 +495,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
                     document.getElementById("form-selected-color").value = "0";
                     document.getElementById("form-selected-color-name").value = "Purple";
+                    document.getElementById('quantity-1').checked = true;
 
+                    // 2. Reset class active cho các label số lượng
+                    document.querySelectorAll('#order-form label[for^="quantity-"]').forEach(label => {
+                         label.classList.toggle('active', label.htmlFor === 'quantity-1');
+                    });
+
+                    // 3. Reset giá về mặc định (1 chiếc)
+                    const defaultPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(2150000).replace(/\s/g, '').replace('₫', ' VNĐ');
+                    const defaultOriginalPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(3000000).replace(/\s/g, '').replace('₫', ' VNĐ');
+                    
+                    document.getElementById('dynamic-price').textContent = defaultPrice;
+                    document.getElementById('original-price').textContent = defaultOriginalPrice;
+
+                    // 4. Reset quà tặng về mặc định
+                    document.getElementById('form-selected-gift').value = "Không có";
                 } else {
                     // Khi có lỗi (status 4xx, 5xx), API CÓ THỂ trả về JSON
                     // Đoạn code .catch() này sẽ xử lý an toàn
@@ -642,7 +657,79 @@ document.addEventListener("DOMContentLoaded", () => {
             center(0); // Center card đầu tiên khi tải trang
         }
     }
+// ============ DÁN HÀM MỚI NÀY VÀO SAU HÀM initFormSizePicker() ============
 
+    // Module 9b: Form Quantity Picker (Module mới)
+    function initQuantityPicker() {
+        const radioInputs = document.querySelectorAll('#order-form input[name="selected_quantity"]');
+        const labels = document.querySelectorAll('#order-form label[for^="quantity-"]');
+        
+        // Các DOM element để hiển thị giá
+        const dynamicPriceEl = document.getElementById("dynamic-price");
+        const originalPriceEl = document.getElementById("original-price");
+        
+        // Input ẩn lưu thông tin quà
+        const hiddenGiftInput = document.getElementById("form-selected-gift");
+
+        if (!radioInputs.length || !dynamicPriceEl || !originalPriceEl || !hiddenGiftInput) return;
+
+        // Định nghĩa giá và quà
+        const PADDLE_PRICE = 2150000;
+        const ORIGINAL_PADDLE_PRICE = 3000000;
+        
+        const quantityOptions = {
+            '1': { 
+                gift: 'Không có', 
+                price: PADDLE_PRICE, 
+                originalPrice: ORIGINAL_PADDLE_PRICE 
+            },
+            '2': { 
+                gift: 'Tặng 1 hộp bóng Leopard Space X (120k)', 
+                price: PADDLE_PRICE * 2, 
+                originalPrice: ORIGINAL_PADDLE_PRICE * 2 
+            },
+            '3': { 
+                gift: 'Tặng 1 áo Leopard (250k)', 
+                price: PADDLE_PRICE * 3, 
+                originalPrice: ORIGINAL_PADDLE_PRICE * 3 
+            }
+        };
+
+        // Hàm định dạng tiền tệ (Ví dụ: 2150000 -> "2.150.000 VNĐ")
+        const formatCurrency = (amount) => {
+            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount).replace(/\s/g, '').replace('₫', ' VNĐ');
+        };
+
+        // Hàm cập nhật giao diện
+        const updateSelection = (selectedValue) => {
+            const selectedOption = quantityOptions[selectedValue];
+            
+            if (selectedOption) {
+                // Cập nhật giá động
+                dynamicPriceEl.textContent = formatCurrency(selectedOption.price);
+                originalPriceEl.textContent = formatCurrency(selectedOption.originalPrice);
+                
+                // Cập nhật input ẩn
+                hiddenGiftInput.value = selectedOption.gift;
+            }
+            
+            // Cập nhật class 'active' cho label
+            labels.forEach(label => {
+                label.classList.toggle('active', label.htmlFor === `quantity-${selectedValue}`);
+            });
+        };
+
+        // Gán sự kiện 'change' cho mỗi radio button
+        radioInputs.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                updateSelection(e.target.value);
+            });
+        });
+
+        // Khởi tạo giá trị mặc định khi tải trang
+        updateSelection('1');
+    }
+    initQuantityPicker();
     initKocSlider_v5();
     // --- BỘ ĐIỀU KHIỂN CHẠY ---
     initScrollObserver();

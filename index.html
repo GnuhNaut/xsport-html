@@ -251,6 +251,24 @@
             </div>
         </section>
 
+        <section id="promotion" class="py-20 bg-black">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="font-micho text-2xl md:text-3xl lg:text-4xl font-semibold text-white uppercase tracking-wider text-shadow-lg shadow-brand-teal reveal">Mua nhiều ưu đãi nhiều</h2>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto mt-4 reveal">
+                    <span class="hidden md:inline">Mua ngay để nhận những phần quà hấp dẫn</span>
+                </p>
+            </div>
+            <div class="container mx-auto px-6 grid md:grid-cols-2 grid-cols-1 gap-8 mt-12">
+
+                <img loading="lazy" src="./assets/imgs/set2.webp" alt="NFC Chip Integration" class="rounded-lg shadow-2xl shadow-brand-teal/50 mx-auto w-full max-w-md transition-all duration-400 ease-in-out hover:scale-105 hover:shadow-brand-teal">
+
+                <img loading="lazy" src="./assets/imgs/set3.webp" alt="NFC Chip Integration" class="rounded-lg shadow-2xl shadow-brand-teal/50 mx-auto w-full max-w-md transition-all duration-400 ease-in-out hover:scale-105 hover:shadow-brand-teal">
+            </div>
+            <div class="m-auto text-center mt-12">
+                <a href="#order-form" class="cta-primary shimmer-btn cta-mobile">Nhận ưu đãi ngay</a>
+            </div>
+        </section>
+
         <section id="faq" class="py-20 bg-brand-navy-light">
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-1 lg:grid-cols-2 md:gap-16 gap-4 items-center">
@@ -342,7 +360,33 @@
                             </label>
                         </div>
                     </div>
-                    
+                    <div>
+                        <label class="block text-left text-lg text-gray-300 mb-4">Chọn số lượng (và nhận ưu đãi) *</label>
+                        <div class="grid md:grid-cols-3 grid-cols-1 gap-3">
+                            <input type="radio" name="selected_quantity" id="quantity-1" value="1" class="hidden" checked>
+                            <label for="quantity-1" class="size-selector-label active">
+                                <strong>1 CHIẾC</strong>
+                                <span class="text-sm text-gray-400">Giá gốc</span>
+                            </label>
+
+                            <input type="radio" name="selected_quantity" id="quantity-2" value="2" class="hidden">
+                             <label for="quantity-2" class="size-selector-label">
+                                <strong>2 CHIẾC</strong>
+                                <span class="text-sm text-gray-400 gift-promo">
+                                    Tặng 1 hộp bóng (120k)
+                                </span>
+                            </label>
+
+                            <input type="radio" name="selected_quantity" id="quantity-3" value="3" class="hidden">
+                             <label for="quantity-3" class="size-selector-label">
+                                <strong>3 CHIẾC</strong>
+                                <span class="text-sm text-gray-400 gift-promo">
+                                    Tặng 1 áo Leopard (250k)
+                                </span>
+                            </label>
+                        </div>
+                        <input type="hidden" name="selected_gift" id="form-selected-gift" value="Không có">
+                    </div>
                     <div>
                         <label class="block text-left text-lg text-gray-300 mb-4">Chọn màu sắc của bạn *</label>
                         <div class="grid grid-cols-4 sm:grid-cols-8 gap-3 m-auto">
@@ -360,8 +404,10 @@
                     <div id="form-message" class="text-lg font-semibold md:p-4 p-2 rounded-lg hidden"></div>
 
                     <div class="md:pt-4 pt-2 text-center">
-                        <span class="block text-xl font-semibold text-gray-400 line-through">3.000.000 VNĐ</span>
-                        <span class="block text-2xl md:text-3xl font-bold text-brand-teal mt-1">CHỈ CÒN: 2.150.000 VNĐ</span>
+                        <span id="original-price" class="block text-xl font-semibold text-gray-400 line-through">3.000.000 VNĐ</span>
+                        <span class="block text-2xl md:text-3xl font-bold text-brand-teal mt-1">
+                            CHỈ CÒN: <span id="dynamic-price">2.150.000 VNĐ</span>
+                        </span>
                     </div>
                     <p class="text-brand-teal font-bold">Giá Ưu Đãi Chỉ Còn <span class="md:text-4xl">200</span> Chiếc</p>
                     <button type="submit" id="form-submit-button" class="cta-primary w-full cta-large shimmer-btn">
@@ -411,13 +457,14 @@
 
     <a class="" href="tel:0961266266" title="Gọi Hotline">
         <div class="button-container">
+
+            0961 266 266
             <div>
                 <div class="pulse-background"></div>
                 <button class="float-button">
                     <img src="./assets/icons/phone.svg"  width="35" height="35" alt="Hotline">
                 </button>
             </div>
-            0961 266 266
         </div>
     </a>
     <div id="image-lightbox" class="fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4 hidden">
