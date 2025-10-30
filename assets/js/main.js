@@ -68,14 +68,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!productSection) return;
 
         const data = [
-            { id: 0, title: "WAVEX - WHITE", image: "./assets/imgs/products/white.webp", background: "radial-gradient(circle at 50% 50%, #444444 0%, var(--brand-black) 75%)", "title-color": "#FFFFFF" },
-            // { id: 0, title: "WAVEX - PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #4a225d 0%, var(--brand-black) 75%)", "title-color": "#A54DCF" },
-            { id: 1, title: "WAVEX - RED", image: "./assets/imgs/products/red.webp", background: "radial-gradient(circle at 50% 50%, #7c1010 0%, var(--brand-black) 75%)", "title-color": "#F61F1F" },
-            { id: 2, title: "WAVEX - LIGHT BLUE", image: "./assets/imgs/products/blue.webp", background: "radial-gradient(circle at 50% 50%, #3a6275 0%, var(--brand-black) 75%)", "title-color": "#93CEE6" },
-            { id: 3, title: "WAVEX - GREEN", image: "./assets/imgs/products/green.webp", background: "radial-gradient(circle at 50% 50%, #02571f 0%, var(--brand-black) 75%)", "title-color": "#04AA3D" },
-            { id: 4, title: "WAVEX - PINK", image: "./assets/imgs/products/pink.webp", background: "radial-gradient(circle at 50% 50%, #7a3a50 0%, var(--brand-black) 75%)", "title-color": "#E37097" },
-            { id: 5, title: "WAVEX - ORANGE", image: "./assets/imgs/products/orange.webp", background: "radial-gradient(circle at 50% 50%, #834700 0%, var(--brand-black) 75%)", "title-color": "#FF8A00" },
-            // { id: 7, title: "WAVEX - LIME GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #4c621a 0%, var(--brand-black) 75%)", "title-color": "#95BE35" }
+            { id: 0, title: "WAVE X - WHITE", image: "./assets/imgs/products/white.webp", background: "radial-gradient(circle at 50% 50%, #444444 0%, var(--brand-black) 75%)", "title-color": "#FFFFFF" },
+            // { id: 0, title: "WAVE X - PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #4a225d 0%, var(--brand-black) 75%)", "title-color": "#A54DCF" },
+            { id: 1, title: "WAVE X - RED", image: "./assets/imgs/products/red.webp", background: "radial-gradient(circle at 50% 50%, #7c1010 0%, var(--brand-black) 75%)", "title-color": "#F61F1F" },
+            { id: 2, title: "WAVE X - LIGHT BLUE", image: "./assets/imgs/products/blue.webp", background: "radial-gradient(circle at 50% 50%, #3a6275 0%, var(--brand-black) 75%)", "title-color": "#93CEE6" },
+            { id: 3, title: "WAVE X - GREEN", image: "./assets/imgs/products/green.webp", background: "radial-gradient(circle at 50% 50%, #02571f 0%, var(--brand-black) 75%)", "title-color": "#04AA3D" },
+            { id: 4, title: "WAVE X - PINK", image: "./assets/imgs/products/pink.webp", background: "radial-gradient(circle at 50% 50%, #7a3a50 0%, var(--brand-black) 75%)", "title-color": "#E37097" },
+            { id: 5, title: "WAVE X - ORANGE", image: "./assets/imgs/products/orange.webp", background: "radial-gradient(circle at 50% 50%, #834700 0%, var(--brand-black) 75%)", "title-color": "#FF8A00" },
+            // { id: 7, title: "WAVE X - LIME GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", background: "radial-gradient(circle at 50% 50%, #4c621a 0%, var(--brand-black) 75%)", "title-color": "#95BE35" }
         ];
         
         let currentItem = 0;
@@ -141,14 +141,14 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!galleryContainer) return;
 
         const data = [
-            // { id: 0, name: "WAVEX - PURPLE", color: "PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", colorHEX: "#A54DCF" },
-            { id: 1, name: "WAVEX - RED", color: "RED", image: "./assets/imgs/products/red.webp", colorHEX: "#F61F1F" },
-            { id: 2, name: "WAVEX - LIGHT BLUE", color: "LIGHT BLUE", image: "./assets/imgs/products/blue.webp", colorHEX: "#93CEE6" },
-            { id: 3, name: "WAVEX - GREEN", color: "GREEN", image: "./assets/imgs/products/green.webp", colorHEX: "#04AA3D" },
-            { id: 4, name: "WAVEX - PINK", color: "PINK", image: "./assets/imgs/products/pink.webp", colorHEX: "#E37097" },
-            { id: 5, name: "WAVEX - ORANGE", color: "ORANGE", image: "./assets/imgs/products/orange.webp", colorHEX: "#FF8A00" },
-            { id: 6, name: "WAVEX - WHITE", color: "WHITE", image: "./assets/imgs/products/white.webp", colorHEX: "#FFFFFF" },
-            // { id: 7, name: "WAVEX - LIME GREEN", color: "LIME GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", colorHEX: "#95BE35" }
+            // { id: 0, name: "WAVE X - PURPLE", color: "PURPLE", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", colorHEX: "#A54DCF" },
+            { id: 1, name: "WAVE X - RED", color: "RED", image: "./assets/imgs/products/red.webp", colorHEX: "#F61F1F" },
+            { id: 2, name: "WAVE X - LIGHT BLUE", color: "LIGHT BLUE", image: "./assets/imgs/products/blue.webp", colorHEX: "#93CEE6" },
+            { id: 3, name: "WAVE X - GREEN", color: "GREEN", image: "./assets/imgs/products/green.webp", colorHEX: "#04AA3D" },
+            { id: 4, name: "WAVE X - PINK", color: "PINK", image: "./assets/imgs/products/pink.webp", colorHEX: "#E37097" },
+            { id: 5, name: "WAVE X - ORANGE", color: "ORANGE", image: "./assets/imgs/products/orange.webp", colorHEX: "#FF8A00" },
+            { id: 6, name: "WAVE X - WHITE", color: "WHITE", image: "./assets/imgs/products/white.webp", colorHEX: "#FFFFFF" },
+            // { id: 7, name: "WAVE X - LIME GREEN", color: "LIME GREEN", image: "https://pickleplay.vn/cdn/shop/files/product_m_u_d79824d0-1f54-43ce-899d-126f44d42604.png", colorHEX: "#95BE35" }
         ];
 
         const fragment = document.createDocumentFragment();
