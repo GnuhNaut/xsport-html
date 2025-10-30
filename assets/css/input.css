@@ -767,9 +767,9 @@ input[type="radio"]:checked + .size-selector-label span {
 #koc-review-slider .track::-webkit-scrollbar { display: none; }
 
 /* Class này sẽ được JS thêm vào blockquote */
-.index-top blockquote{
+/* .index-top blockquote{
     z-index: 20;
-}
+} */
 
 #koc-review-slider .project-card {
     position: relative;
