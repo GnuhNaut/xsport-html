@@ -44,16 +44,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (window.innerWidth <= 768 && (slice === slices[3] || slice === slices[4])) { return; }
                     slice.classList.add('active');
                 });
-                setTimeout(() => {
-                    // titleEl.textContent = slide.title;
-                    // subtitleEl.textContent = slide.subtitle;
-                    // paragraphEl.textContent = slide.paragraph;
-                    contentOverlay.classList.add('show');
-                    // timer = setTimeout(() => {
-                    //     currentSlide = (currentSlide + 1) % slides.length;
-                    //     showSlide(currentSlide);
-                    // }, 8000);
-                }, 2100);
+                contentOverlay.classList.add('show');
+                // setTimeout(() => {
+                //     // titleEl.textContent = slide.title;
+                //     // subtitleEl.textContent = slide.subtitle;
+                //     // paragraphEl.textContent = slide.paragraph;
+                //     contentOverlay.classList.add('show');
+                //     // timer = setTimeout(() => {
+                //     //     currentSlide = (currentSlide + 1) % slides.length;
+                //     //     showSlide(currentSlide);
+                //     // }, 8000);
+                // }, 1000);
             }, 100);
         }
         updateBackgroundSize();
